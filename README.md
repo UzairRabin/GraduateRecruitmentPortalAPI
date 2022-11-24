@@ -1,6 +1,6 @@
 # GraduateRecruitmentPortalAPI
 
-## Repository Interfaces & Classes Naming Convention
+### Repository Interfaces & Classes Naming Convention
 ### Packaging the Interfaces and Implementation Classes
 All files should be kept in a single package. The interface and its implementation.
 ```
