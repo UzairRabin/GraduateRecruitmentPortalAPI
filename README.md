@@ -1,12 +1,12 @@
 # GraduateRecruitmentPortalAPI
 
-### Repository Interfaces & Classes Naming Convention
-### Packaging the Interfaces and Implementation Classes
+## Packaging the Interfaces and Implementation Classes
 All files should be kept in a single package. The interface and its implementation.
 ```
 e.g Inside the Service Package, a IStudentService.java and StudentServiceImpl.java should be located in the Service package.
 DO NOT CREATE AN IMPL Package specifically for the implementation class of the interface.
 ```
+## Repository Interfaces & Classes Naming Convention
 ### Naming the Interface
 All interfaces created should follow the convention below.
 An interface name should be preceded by an ```I``` then followed
