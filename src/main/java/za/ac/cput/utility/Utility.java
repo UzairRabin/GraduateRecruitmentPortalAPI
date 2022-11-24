@@ -1,5 +1,7 @@
 package za.ac.cput.utility;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * @author Mbuso Kotobe
  *
@@ -10,4 +12,15 @@ package za.ac.cput.utility;
  * Please keep all class member methods static.
  * */
 public class Utility {
+
+    public static boolean isEmptyOrNull(String s) {
+        return StringUtils.isEmpty(s);
+    }
+
+    public static void checkStringParam(String paramName, String paramValue) {
+        if(isEmptyOrNull(paramValue))
+            throw new IllegalArgumentException(
+                    String.format("Invalid value for params: %s", paramName)
+            );
+    }
 }
