@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Chadrack Mbuyi
  * */
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @Slf4j
 class DepartmentServiceImplTest {

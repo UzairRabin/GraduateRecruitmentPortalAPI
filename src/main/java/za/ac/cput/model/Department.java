@@ -17,7 +17,7 @@ public class Department implements Serializable {
     @NotNull private int departmentId;
     @NotNull private String departmentName;
 
-    public Department() {
+    protected Department() {
 
     }
 

@@ -31,9 +31,9 @@ public class DepartmentController {
     @PostMapping("save")
     public ResponseEntity<Department> save(@Valid @RequestBody Department department){
         log.info("Save request:{}", department);
-        Department dept;
+        Department departments;
         try{
-            dept = DepartmentFactory.build(department.getDepartmentId(), department.getDepartmentName());
+            departments = DepartmentFactory.build(department.getDepartmentId(), department.getDepartmentName());
         } catch (IllegalArgumentException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
