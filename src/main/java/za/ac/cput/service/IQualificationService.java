@@ -1,4 +1,7 @@
 package za.ac.cput.service;
 
-public interface IQualificationService {
+import za.ac.cput.model.Qualification;
+
+public interface IQualificationService extends IService <Qualification, String> {
+    void deleteById(String id);
 }
