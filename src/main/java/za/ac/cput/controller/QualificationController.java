@@ -57,10 +57,10 @@ public class QualificationController {
         return ResponseEntity.ok(qualification);
     }
 
-    @GetMapping("read-all")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<List<Qualification>> readAll(){
-        List<Qualification> qualificationList = this.qualificationService.findAll();
-        return ResponseEntity.ok(qualificationList);
-    }
+//    @GetMapping("read-all")
+//    @CrossOrigin(origins = "http://localhost:4200")
+//    public ResponseEntity<List<Qualification>> readAll(){
+//        List<Qualification> qualificationList = this.qualificationService.findAll();
+//        return ResponseEntity.ok(qualificationList);
+//    }
 }

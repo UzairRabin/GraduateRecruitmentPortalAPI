@@ -8,9 +8,9 @@ import java.util.Objects;
 public class Qualification implements Serializable {
     @Id
     private String qualificationId;
-    private String qualificationName, qualificationDescription,;
+    private String qualificationName, qualificationDescription;
 
-    public Qualification() {
+    protected Qualification() {
 
     }
 
