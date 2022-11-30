@@ -30,6 +30,6 @@ public class GraduateRecruitmentPortalAPI {
     public static void main(String[] args)
     {
         createAppDirectory();
-//        SpringApplication.run(GraduateRecruitmentPortalAPI.class, args);
+        //SpringApplication.run(GraduateRecruitmentPortalAPI.class, args);
     }
 }
