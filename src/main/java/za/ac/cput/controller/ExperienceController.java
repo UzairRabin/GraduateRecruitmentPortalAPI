@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.factory.ExperienceFactory;
 import za.ac.cput.model.Experience;
-import za.ac.cput.service.experience.impl.ExperienceServiceImpl;
+import za.ac.cput.service.ExperienceServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
-@RequestMapping("api/v1/graduate-portal/experience/")
+@RequestMapping("api/v1/graduate-recruitment-portal-api/experience/")
 public class ExperienceController {
     private final ExperienceServiceImpl experienceService;
 
