@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 public class Vacancy {
     @Id
     @GeneratedValue
-    private int vacancyId;
+    private Long vacancyId;
     private String vacancyTitle;
     private String jobType;
     private String jobRole;

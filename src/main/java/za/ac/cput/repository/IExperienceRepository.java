@@ -7,6 +7,6 @@ import za.ac.cput.model.Experience;
 import java.util.Optional;
 
 @Repository
-public interface ExperienceRepository extends JpaRepository<Experience, String> {
+public interface IExperienceRepository extends JpaRepository<Experience, String> {
     Optional<Experience> findExperienceByExperienceId(String experienceId);
 }

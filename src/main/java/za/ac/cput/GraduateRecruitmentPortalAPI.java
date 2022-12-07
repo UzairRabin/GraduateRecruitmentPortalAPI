@@ -5,26 +5,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.File;
+import java.io.IOException;
 
 @Slf4j
 @SpringBootApplication
 public class GraduateRecruitmentPortalAPI {
 
-    public static final File appDirectory = new File(System.getenv("APPDATA")
-                                            + "\\" + "Graduate " + "Recruitment Portal" + "\\");;
+    private static File appDirectory = null;
 
-    private static void createAppDirectory()
+    public static String getAppDirectory()
     {
-        if(!appDirectory.exists())
-        {
-            if (((appDirectory.mkdirs())))
-            {
-                log.info("App Directory Creation:{}", appDirectory);
-            } else
-            {
-                log.error("App Directory Creation:{}", appDirectory);
-            }
-        }
+        return appDirectory.getAbsolutePath();
     }
 
     public static void main(String[] args)
@@ -32,4 +23,29 @@ public class GraduateRecruitmentPortalAPI {
         createAppDirectory();
         //SpringApplication.run(GraduateRecruitmentPortalAPI.class, args);
     }
+
+
+    private static void createAppDirectory()
+    {
+        try{
+            appDirectory = new File(System.getenv("APPDATA")
+                    + "\\" + "Graduate " + "Recruitment Portal" + "\\");
+
+            if(!appDirectory.exists())
+            {
+                if (((appDirectory.mkdirs())))
+                {
+                    log.info("App Directory Creation:{}", appDirectory);
+                } else
+                {
+                    log.error("App Directory Creation:{}", appDirectory);
+                }
+            }
+        }catch (Exception exception)
+        {
+            log.info("App Directory Creation:{}", exception);
+        }
+
+    }
+
 }

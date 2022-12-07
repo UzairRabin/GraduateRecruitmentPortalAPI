@@ -3,15 +3,18 @@ package za.ac.cput.controller;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
+import static org.junit.jupiter.api.Assertions.*;
+import za.ac.cput.factory.RecruiterFactory;
+import za.ac.cput.factory.VacancyFactory;
 import za.ac.cput.model.Recruiter;
 import za.ac.cput.model.Vacancy;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.springframework.test.util.AssertionErrors.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -25,14 +28,14 @@ public class VacancyControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    private Vacancy employeeAddress;
+    private Vacancy vacancy;
     private String baseUrl;
 
     @BeforeEach
     void setUp()
     {
-        Recruiter recruiter = RecruiterFactory.build(6, "John Smith", "Golden Minds", "021 541 3254", LocalDate.now());
-        Vacancy vacancy = VacancyFactory.build(12,"Full Stack Engineer", "Hybrid", "Graduate", false, "Johannesburg", recruiter);
+        Recruiter recruiter = RecruiterFactory.build(6L, "John Smith", "Golden Minds", "021 541 3254", LocalDate.now());
+        vacancy = VacancyFactory.build(12L,"Full Stack Engineer", "Hybrid", "Graduate", false, "Johannesburg", recruiter);
         baseUrl = "http://localhost:" + portNumber + "/" + "graduate-recruitment-portal-api/vacancy/";
     }
 
@@ -41,18 +44,17 @@ public class VacancyControllerTest {
     void save()
     {
         String url = baseUrl + "save";
-        ResponseEntity<Vacancy> response = restTemplate.postForEntity(url, employeeAddress, Vacancy.class);
+        ResponseEntity<Vacancy> response = restTemplate.postForEntity(url, vacancy, Vacancy.class);
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
-                () -> assertNotNull(response.getBody())
-                 );
+                () -> assertNotNull(response.getBody()));
     }
 
     @Test
     @Order(2)
     void read()
     {
-        String url = baseUrl + "read/" + employeeAddress.getStaffId();
+        String url = baseUrl + "read/" + vacancy.getVacancyId();
         ResponseEntity<Vacancy> response = restTemplate.getForEntity(url, Vacancy.class);
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode())
@@ -76,7 +78,7 @@ public class VacancyControllerTest {
     void delete()
     {
         String url = baseUrl + "delete";
-        restTemplate.delete(url, employeeAddress, Vacancy.class);
+        restTemplate.delete(url, vacancy, Vacancy.class);
     }
 
     @Test
@@ -84,7 +86,7 @@ public class VacancyControllerTest {
     @Disabled
     void deleteById()
     {
-        String url = baseUrl + "delete-by-id/" + employeeAddress.getStaffId();
+        String url = baseUrl + "delete-by-id/" + vacancy.getVacancyId();
         ResponseEntity<Vacancy> response = restTemplate.getForEntity(url, Vacancy.class);
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode())
