@@ -1,15 +1,18 @@
 package za.ac.cput.model;
 
-import lombok.*;
+/*
+   User.java
+   Damone Hartnick
+ */
 
-import javax.persistence.Id;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public abstract class User {
+public abstract class User implements Serializable {
     protected String email;
     protected String password;
     protected String userRole;
