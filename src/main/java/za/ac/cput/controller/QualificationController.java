@@ -12,7 +12,7 @@ import za.ac.cput.service.IQualificationService;
 
 import java.util.List;
 @RestController
-@RequestMapping("api/v1/graduate-portal/qualification/")
+@RequestMapping("api/v1/graduate-recruitment-portal-api/qualification/")
 @Slf4j
 
 public class QualificationController {
@@ -57,10 +57,10 @@ public class QualificationController {
         return ResponseEntity.ok(qualification);
     }
 
-    @GetMapping("read-all")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<List<Qualification>> readAll(){
-        List<Qualification> qualificationList = this.qualificationService.findAll();
-        return ResponseEntity.ok(qualificationList);
-    }
+//    @GetMapping("read-all")
+//    @CrossOrigin(origins = "http://localhost:4200")
+//    public ResponseEntity<List<Qualification>> readAll(){
+//        List<Qualification> qualificationList = this.qualificationService.findAll();
+//        return ResponseEntity.ok(qualificationList);
+//    }
 }

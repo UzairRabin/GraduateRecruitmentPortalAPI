@@ -1,20 +1,19 @@
-package za.ac.cput.service.experience.impl;
+package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.model.Experience;
-import za.ac.cput.repository.ExperienceRepository;
-import za.ac.cput.service.experience.ExperienceService;
+import za.ac.cput.repository.IExperienceRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ExperienceServiceImpl implements ExperienceService {
-    private ExperienceRepository repository;
+public class ExperienceServiceImpl implements IExperienceService {
+    private IExperienceRepository repository;
 
     @Autowired
-    public ExperienceServiceImpl(ExperienceRepository repository) {
+    public ExperienceServiceImpl(IExperienceRepository repository) {
         this.repository = repository;
     }
 
