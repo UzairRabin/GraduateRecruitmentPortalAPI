@@ -31,31 +31,10 @@ public class VacancyServiceImpl implements IVacancyService {
     public Vacancy save(Vacancy vacancy)
     {
         try{
-            safeVacancy = VacancyFactory.build(
-                    vacancy.getVacancyId(),
-                    vacancy.getVacancyTitle(),
-                    vacancy.getJobType(),
-                    vacancy.getJobRole(),
-                    vacancy.isApproved(),
-                    vacancy.getLocation(),
-                    vacancy.getRecruiter());
-
-
-            //TODO Log events to file.
-            //Create dir
-            //Create file
-            //Open file
-            //Write error to file
-
-//            File logDirPath = new File(GraduateRecruitmentPortalAPI.getAppDirectory() + "Logs" + "//");
-//            if(!logDirPath.exists())
-//            {
-//                if(logDirPath.mkdirs())
-//                {
-//                    File logFile = new File(logDirPath.getAbsolutePath() + "Vacancy Service Log.log");
-//                    FileWriter logWriter = new FileWriter(logFile, true);
-//                }
-//            }
+            safeVacancy = VacancyFactory.build(vacancy.getVacancyId(),
+                          vacancy.getVacancyTitle(), vacancy.getJobType(),
+                          vacancy.getJobRole(), vacancy.isApproved(),
+                          vacancy.getLocation(), vacancy.getRecruiter());
         }catch (IllegalArgumentException /*| IOException*/ exception)
         {
             log.error("Vacancy Service: Save Vacancy:{}", exception);
