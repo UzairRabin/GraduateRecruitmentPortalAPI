@@ -14,7 +14,6 @@ import java.util.Optional;
 @RequestMapping("api/v1/graduate-portal/user/")
 @Slf4j
 public class UserController {
-//
     @Autowired
     private UserServiceImpl userService;
 

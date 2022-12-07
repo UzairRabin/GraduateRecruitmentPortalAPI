@@ -4,7 +4,7 @@ import za.ac.cput.model.User;
 import za.ac.cput.utility.Utility;
 
 public class UserFactory {
-//
+
     public static User build (String userId, String email, String password, String userRole){
 
         Utility.checkStringParam("userId", (userId));
