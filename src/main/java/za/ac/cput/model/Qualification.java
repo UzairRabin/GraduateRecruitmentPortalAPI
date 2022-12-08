@@ -10,7 +10,7 @@ public class Qualification implements Serializable {
     private String qualificationId;
     private String qualificationName, qualificationDescription;
 
-    public Qualification() {
+    protected Qualification() {
 
     }
 

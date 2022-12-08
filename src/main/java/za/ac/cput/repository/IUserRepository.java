@@ -2,8 +2,10 @@ package za.ac.cput.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import za.ac.cput.model.Qualification;
+import za.ac.cput.model.User;
 
 @Repository
-public interface IQualificationRepository extends JpaRepository<Qualification, String> {
+public interface IUserRepository extends JpaRepository<User,String> {
+
+
 }

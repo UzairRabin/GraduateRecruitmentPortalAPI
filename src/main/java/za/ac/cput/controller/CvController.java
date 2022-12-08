@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/graduate-portal/cv/")
+@RequestMapping("api/v1/graduate-recruitment-portal-api/cv/")
 @Slf4j
 public class CvController {
 

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/graduate-portal/department/")
+@RequestMapping("api/v1/graduate-recruitment-portal-api/department/")
 @Slf4j
 public class DepartmentController {
 
