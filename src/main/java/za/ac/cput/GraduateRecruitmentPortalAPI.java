@@ -18,12 +18,12 @@ public class GraduateRecruitmentPortalAPI {
         return appDirectory.getAbsolutePath();
     }
 
-    public static String getUserDirectory(String username)
+    public static String getUserDirectory(Long username)
     {
         return getAppDirectory() + "users" + "//" + username;
     }
 
-    public static String getUserDocumentsDirectory(String username)
+    public static String getUserDocumentsDirectory(Long username)
     {
         return getUserDirectory(username) + "documents" + "//";
     }

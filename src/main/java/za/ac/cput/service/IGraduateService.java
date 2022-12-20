@@ -9,7 +9,7 @@ import java.util.Set;
  * Student number: 219181187
  * Date: 24 November 2022
  */
-public interface IGraduateServices extends IService<Graduate, String> {
+public interface IGraduateService extends IService<Graduate, String> {
 
     Set<Graduate> getAll();
 }

@@ -11,7 +11,7 @@ import javax.swing.plaf.multi.MultiInternalFrameUI;
 import java.util.List;
 
 public interface ICvService extends IService<Cv,String> {
-    Cv save(MultipartFile cv, String username);
+    Cv save(MultipartFile cv, Long username);
     List<Cv> findAll();
     List<Cv> findAllByUserId();
 

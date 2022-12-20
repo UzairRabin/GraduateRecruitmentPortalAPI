@@ -32,7 +32,7 @@ public class CvController {
     }
 
     @PostMapping("save")
-    public ResponseEntity<Cv> save(@RequestParam MultipartFile cv, @RequestParam String username)
+    public ResponseEntity<Cv> save(@RequestParam MultipartFile cv, @RequestParam Long username)
     {
         log.info("Save CV request:{}", cv);
         Cv requestResult = this.cvService.save(cv, username);

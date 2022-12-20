@@ -34,7 +34,7 @@ public class CvServiceImpl implements ICvService {
     }
 
     @Override
-    public Cv save(MultipartFile cv, String username)
+    public Cv save(MultipartFile cv, Long username)
     {
         try {
             String userCvDirectory = GraduateRecruitmentPortalAPI
