@@ -17,7 +17,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -30,5 +29,6 @@ public class Cv implements Serializable {
     @NotNull private String documentName;
     @NotNull private String documentLocation;
     @NotNull private boolean isAcknowledged;
+    private byte[] cvData;
     @NotNull private LocalDate dateAdded;
 }

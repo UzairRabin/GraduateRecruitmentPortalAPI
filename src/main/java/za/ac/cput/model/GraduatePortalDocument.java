@@ -1,0 +1,26 @@
+package za.ac.cput.model;
+
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.time.LocalDate;
+
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
+@EqualsAndHashCode
+@Entity
+public class GraduatePortalDocument {
+    @Id
+    @GeneratedValue
+    private long documentId;
+    private String documentName;
+    private String documentType;
+    private String documentLocation;
+    private byte[] documentData;
+    private LocalDate dateAdded;
+}

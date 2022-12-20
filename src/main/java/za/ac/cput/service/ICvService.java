@@ -13,5 +13,6 @@ import java.util.List;
 public interface ICvService extends IService<Cv,String> {
     Cv save(MultipartFile cv, String username);
     List<Cv> findAll();
+    List<Cv> findAllByUserId();
 
 }
