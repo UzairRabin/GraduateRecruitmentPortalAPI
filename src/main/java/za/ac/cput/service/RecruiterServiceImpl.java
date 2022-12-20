@@ -25,8 +25,8 @@ public class RecruiterServiceImpl implements IRecruiterService{
     public Recruiter save(Recruiter recruiter) {
         try {
             safeRecruiter = RecruiterFactory.build(recruiter.getRecruiterId(),
-                    recruiter.getRecruiterName(), recruiter.getCompanyName(),
-                    recruiter.getContactNumber(), recruiter.getDateAdded());
+                    recruiter.getFirstName(), recruiter.getCompanyName(),
+                    recruiter.getCellphone(), recruiter.getDateAdded());
         }
         catch (IllegalArgumentException /*| IOException*/ exception)
         {

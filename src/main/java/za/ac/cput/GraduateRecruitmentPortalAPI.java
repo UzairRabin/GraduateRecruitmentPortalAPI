@@ -18,10 +18,20 @@ public class GraduateRecruitmentPortalAPI {
         return appDirectory.getAbsolutePath();
     }
 
+    public static String getUserDirectory(String username)
+    {
+        return getAppDirectory() + "users" + "//" + username;
+    }
+
+    public static String getUserDocumentsDirectory(String username)
+    {
+        return getUserDirectory(username) + "documents" + "//";
+    }
+
     public static void main(String[] args)
     {
         createAppDirectory();
-        //SpringApplication.run(GraduateRecruitmentPortalAPI.class, args);
+        SpringApplication.run(GraduateRecruitmentPortalAPI.class, args);
     }
 
 

@@ -17,24 +17,29 @@ import za.ac.cput.utility.Utility;
  * */
 public class GraduateFactory {
 
-    public static Graduate createGraduateFactory ( String graduateId, String firstName, String preferredName, String surname, String primaryEmail, String secondaryEmail, String password, String cellphone, Experience experience, Qualification qualification, Cv cv){
+    public static Graduate createGraduateFactory (String graduateId, String firstName, String preferredName, String surname, String primaryEmail, String secondaryEmail, String password, String cellphone, Experience experience, Qualification qualification, Cv cv){
 
-        if(Utility.isEmptyOrNull(firstName) || Utility.isEmptyOrNull(preferredName) || Utility.isEmptyOrNull(surname) || Utility.isEmptyOrNull(primaryEmail) || Utility.isEmptyOrNull(secondaryEmail) || Utility.isEmptyOrNull(password) || Utility.isEmptyOrNull(cellphone))
-            return null;
-       Utility.checkStringParam("graduateId", String.valueOf(graduateId));
+        Utility.checkStringParam("firstName", firstName);
+        Utility.checkStringParam("preferredName", preferredName);
+        Utility.checkStringParam("surname", surname);
+        Utility.checkStringParam("primaryEmail", primaryEmail);
+        Utility.checkStringParam("secondaryEmail", secondaryEmail);
+        Utility.checkStringParam("password", password);
+        Utility.checkStringParam("cellphone", cellphone);
+        Utility.checkStringParam("graduateId", String.valueOf(graduateId));
 
-        Graduate graduate = new Graduate.Builder().setGraduateId(graduateId)
-                .setQualification(qualification)
-                .setExperience(experience)
-                .setCV(cv)
-                .setFirstName(firstName)
-                .setPreferredName(preferredName).setSurname(surname)
-                .setPrimaryEmail(primaryEmail).setSecondaryEmail(secondaryEmail)
-                .setPassword(password).setCellphone(cellphone).build();
+        Graduate graduate = Graduate.builder().graduateId(graduateId)
+                .qualification(qualification)
+                .experiences(experience)
+                .cv(cv)
+                .firstName(firstName)
+                .preferredName(preferredName)
+                .surname(surname)
+                .email(primaryEmail)
+                .secondaryEmail(secondaryEmail)
+                .password(password)
+                .cellphone(cellphone).build();
 
         return graduate;
-
-
-
     }
 }

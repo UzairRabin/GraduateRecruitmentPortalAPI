@@ -62,7 +62,6 @@ public class DepartmentController {
     @DeleteMapping("delete/{departmentId}")
     public ResponseEntity<Void> delete(@PathVariable int departmentId) {
         log.info("delete request:{}",departmentId);
-        //System.out.println("delete" +""+ departmentId);
         Optional<Department> department  = getById(departmentId);
         department.ifPresent(this.departmentService::delete);
         return ResponseEntity.noContent().build();

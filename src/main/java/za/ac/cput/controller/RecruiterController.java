@@ -12,7 +12,7 @@ import za.ac.cput.service.IRecruiterService;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/graduate-portal/recruiter/")
+@RequestMapping("api/v1/graduate-recruitment-portal-api/recruiter/")
 @Slf4j
 public class RecruiterController {
     private final IRecruiterService service;

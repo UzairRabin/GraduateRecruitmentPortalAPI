@@ -2,12 +2,14 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Service;
 import za.ac.cput.model.Qualification;
 import za.ac.cput.repository.IQualificationRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class QualificationServiceImpI implements IQualificationService{
     private IQualificationRepository repository;
 

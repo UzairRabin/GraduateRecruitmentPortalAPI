@@ -8,8 +8,8 @@ public class DepartmentFactory {
         Utility.checkStringParam("departmentId", String.valueOf(departmentId));
         Utility.checkStringParam("departmentName", departmentName);
 
-        return new Department.Builder().setDepartmentId(departmentId)
-                .setDepartmentName(departmentName)
+        return Department.builder().departmentId(departmentId)
+                .departmentName(departmentName)
                 .build();
     }
 }

@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class DepartmentServiceImpl implements IDepartmentService{
 
-    protected IDepartmentRepository repository;
+    private IDepartmentRepository repository;
 
     @Autowired
     public DepartmentServiceImpl(IDepartmentRepository repository){
@@ -31,6 +31,12 @@ public class DepartmentServiceImpl implements IDepartmentService{
     @Override
     public Optional<Department> read(Integer integer) {
         return this.repository.findById(integer);
+    }
+
+    @Override
+    public List<Department> findAll()
+    {
+        return repository.findAll();
     }
 
     @Override

@@ -42,7 +42,7 @@ public class GraduateServiceImpl {
         existingGraduate.setFirstName(graduate.getFirstName());
         existingGraduate.setPreferredName(graduate.getPreferredName());
         existingGraduate.setSurname(graduate.getSurname());
-        existingGraduate.setPrimaryEmail(graduate.getPrimaryEmail());
+        existingGraduate.setEmail(graduate.getEmail());
         existingGraduate.setSecondaryEmail(graduate.getSecondaryEmail());
         existingGraduate.setPassword(graduate.getPassword());
         existingGraduate.setCellphone(graduate.getCellphone());

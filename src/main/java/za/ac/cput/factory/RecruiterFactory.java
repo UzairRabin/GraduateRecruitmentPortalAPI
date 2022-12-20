@@ -10,8 +10,8 @@ public class RecruiterFactory {
      String contactNumber,
      LocalDate dateAdded)
     {
-        return Recruiter.builder().recruiterName(recruiterName).companyName(companyName)
-                                  .contactNumber(contactNumber).dateAdded(dateAdded)
+        return Recruiter.builder().firstName(recruiterName).companyName(companyName)
+                                  .cellphone(contactNumber).dateAdded(dateAdded)
                                   .build();
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.factory.CvFactory;
 import za.ac.cput.model.Cv;
@@ -17,7 +18,6 @@ import za.ac.cput.service.ICvService;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/graduate-recruitment-portal-api/cv/")
@@ -32,11 +32,11 @@ public class CvController {
     }
 
     @PostMapping("save")
-    public ResponseEntity<Cv> save(@Valid @RequestBody Cv cv) {
-        log.info("Save request:{}", cv);
-        Cv cv1 = CvFactory.build(cv.getCvId(), cv.getDocumentLocation(), cv.isAcknowledged(), cv.getDateAdded());
-        Cv save = this.cvService.save(cv1);
-        return ResponseEntity.ok(save);
+    public ResponseEntity<Cv> save(@RequestParam MultipartFile cv, @RequestParam String username)
+    {
+        log.info("Save CV request:{}", cv);
+        Cv requestResult = this.cvService.save(cv, username);
+        return ResponseEntity.ok(requestResult);
     }
 
     @GetMapping("read/{cvId}")
@@ -57,9 +57,6 @@ public class CvController {
     public ResponseEntity<List<Cv>> findAll() {
         List<Cv> cv = this.cvService.findAll();
         return ResponseEntity.ok(cv);
-
     }
-
-
 
 }

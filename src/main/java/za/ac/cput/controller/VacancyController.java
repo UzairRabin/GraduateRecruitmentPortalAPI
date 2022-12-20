@@ -6,11 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import za.ac.cput.factory.VacancyFactory;
 import za.ac.cput.model.Vacancy;
 import za.ac.cput.service.IVacancyService;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController

@@ -11,16 +11,16 @@ import za.ac.cput.utility.Utility;
 import java.time.LocalDate;
 
 public class CvFactory {
-    public static Cv build(int cvId, String documentLocation, boolean isAcknowledged, LocalDate dateAdded) {
-        Utility.checkStringParam("cvID", String.valueOf(cvId));
+    public static Cv build(int cvId, String documentName, String documentLocation, boolean isAcknowledged, LocalDate dateAdded) {
+        Utility.checkStringParam("documentName", documentName);
         Utility.checkStringParam("documentLocation", documentLocation);
-        Utility.checkStringParam("isAcknowledged", String.valueOf(isAcknowledged));
         Utility.checkStringParam("dateAdded", String.valueOf(dateAdded));
 
-        return new Cv.Builder().setCvId(cvId)
-                .setDocumentLocation(documentLocation)
-                .setAcknowledged(isAcknowledged)
-                .setDateAdded(dateAdded)
+        return Cv.builder().cvId(cvId)
+                .documentName(documentName)
+                .documentLocation(documentLocation)
+                .isAcknowledged(isAcknowledged)
+                .dateAdded(dateAdded)
                 .build();
     }
 }
