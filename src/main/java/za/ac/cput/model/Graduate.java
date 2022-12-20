@@ -16,7 +16,6 @@ import java.io.Serializable;
  * Date: 24 November 2022
  */
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder

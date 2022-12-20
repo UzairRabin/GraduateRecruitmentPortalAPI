@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder

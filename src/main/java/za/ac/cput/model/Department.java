@@ -13,7 +13,6 @@ import java.util.Objects;
  * @author Chadrack Mbuyi
  * */
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

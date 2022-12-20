@@ -11,7 +11,6 @@ import lombok.experimental.SuperBuilder;
 import java.io.Serializable;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
