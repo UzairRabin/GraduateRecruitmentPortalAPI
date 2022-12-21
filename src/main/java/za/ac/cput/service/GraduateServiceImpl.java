@@ -36,19 +36,21 @@ public class GraduateServiceImpl {
         return this.repository.findById(graduateId).orElse(null);
     }
 
+    /**
     //Don't forget to include update method here
     public  Graduate updateGraduate(Graduate graduate){
         Graduate existingGraduate = repository.findById(graduate.getGraduateId()).orElse(null);
         existingGraduate.setFirstName(graduate.getFirstName());
         existingGraduate.setPreferredName(graduate.getPreferredName());
         existingGraduate.setSurname(graduate.getSurname());
-        existingGraduate.setEmail(graduate.getEmail());
+        existingGraduate.setPrimaryEmail(graduate.getPrimaryEmail());
         existingGraduate.setSecondaryEmail(graduate.getSecondaryEmail());
         existingGraduate.setPassword(graduate.getPassword());
         existingGraduate.setCellphone(graduate.getCellphone());
 
         return this.repository.save(existingGraduate);
     }
+**/
 
     //Delete method
     public boolean deleteGraduate(String graduateId) {
