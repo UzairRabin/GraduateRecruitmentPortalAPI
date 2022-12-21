@@ -12,5 +12,5 @@ import java.util.Optional;
 
 @Repository
 public interface IDepartmentRepository extends JpaRepository<Department, Integer> {
-    Optional<Department> findExperienceByExperienceId(int departmentId);
+
 }
