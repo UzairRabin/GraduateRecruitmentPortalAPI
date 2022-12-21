@@ -53,12 +53,12 @@ public class GraduateController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
-
+/**
     @PutMapping("/update")
     public Graduate updateGraduate (@RequestBody Graduate graduate){
         return graduateServiceImpl.updateGraduate(graduate);
     }
-
+**/
 
     @DeleteMapping("deleteGraduate/{id}")
     public ResponseEntity<Graduate> delete(@PathVariable String id)

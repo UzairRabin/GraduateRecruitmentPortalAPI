@@ -1,8 +1,8 @@
 package za.ac.cput.factory;
 
 
-import jdk.jshell.execution.Util;
-import lombok.experimental.Helper;
+
+import lombok.Setter;
 import za.ac.cput.model.Cv;
 import za.ac.cput.model.Experience;
 import za.ac.cput.model.Graduate;
@@ -15,9 +15,10 @@ import za.ac.cput.utility.Utility;
  * @author Chuma Nxazonke
  * Date: 23 November 2022
  * */
+
 public class GraduateFactory {
 
-    public static Graduate createGraduateFactory (String graduateId, String firstName, String preferredName, String surname, String primaryEmail, String secondaryEmail, String password, String cellphone, Experience experience, Qualification qualification, Cv cv){
+    public static Graduate createGraduateFactory (String graduateId, String firstName, String preferredName, String surname, String primaryEmail, String secondaryEmail, String password, String cellphone,Cv cv, Qualification qualification, Experience experience){
 
         Utility.checkStringParam("firstName", firstName);
         Utility.checkStringParam("preferredName", preferredName);
@@ -28,18 +29,17 @@ public class GraduateFactory {
         Utility.checkStringParam("cellphone", cellphone);
         Utility.checkStringParam("graduateId", String.valueOf(graduateId));
 
-        Graduate graduate = Graduate.builder().graduateId(graduateId)
-                .qualification(qualification)
-                .experiences(experience)
-                .cv(cv)
-                .firstName(firstName)
-                .preferredName(preferredName)
-                .surname(surname)
-                .email(primaryEmail)
-                .secondaryEmail(secondaryEmail)
-                .password(password)
-                .cellphone(cellphone).build();
+        return new Graduate.Builder().setGraduateId(graduateId)
+                .setFirstName(firstName)
+                .setPreferredName(preferredName)
+                .setSurname(surname)
+                .setPrimaryEmail(primaryEmail)
+                .setSecondaryEmail(secondaryEmail)
+                .setPassword(password)
+                .setCellphone(cellphone)
+                .setCV(cv)
+                .setQualification(qualification)
+                .setExperience(experience).build();
 
-        return graduate;
     }
 }
