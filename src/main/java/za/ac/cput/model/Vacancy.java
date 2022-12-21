@@ -2,10 +2,7 @@ package za.ac.cput.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Getter
 @AllArgsConstructor
@@ -15,13 +12,13 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Vacancy {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long vacancyId;
     private String vacancyTitle;
     private String jobType;
     private String jobRole;
     private boolean isApproved;
     private String location;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Recruiter recruiter;
 }

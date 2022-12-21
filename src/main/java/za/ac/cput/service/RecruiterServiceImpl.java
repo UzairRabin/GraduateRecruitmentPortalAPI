@@ -13,36 +13,58 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class RecruiterServiceImpl implements IRecruiterService{
+public class RecruiterServiceImpl implements IRecruiterService {
 
     IRecruiterRepository recruiterRepository;
     Recruiter safeRecruiter;
 
     @Autowired
-    public RecruiterServiceImpl(IRecruiterRepository recruiterService){this.recruiterRepository = recruiterService;}
+    public RecruiterServiceImpl(IRecruiterRepository recruiterService)
+    {
+        this.recruiterRepository = recruiterService;
+    }
 
     @Override
-    public Recruiter save(Recruiter recruiter) {
-        try {
-            safeRecruiter = RecruiterFactory.build(recruiter.getRecruiterId(),
-                    recruiter.getFirstName(), recruiter.getCompanyName(),
-                    recruiter.getCellphone(), recruiter.getDateAdded());
-        }
-        catch (IllegalArgumentException /*| IOException*/ exception)
-        {
-            log.error("Recruiter Service: Save Recruiter:{}", exception);
-        }
+    public Recruiter save(Recruiter recruiter) throws IllegalArgumentException
+    {
+        safeRecruiter = RecruiterFactory.build(recruiter.getFirstName(),
+                                               recruiter.getSurname(),
+                                               recruiter.getCompanyName(),
+                                               recruiter.getEmail(),
+                                               recruiter.getCellphone(),
+                                               recruiter.getPassword(),
+                                               recruiter.getDateAdded());
         return recruiterRepository.save(safeRecruiter);
-        }
-        @Override
-        public Optional<Recruiter> read(Long integer){return recruiterRepository.findById(integer);}
-
-        @Override
-        public List<Recruiter> findAll(){return this.recruiterRepository.findAll();}
-
-        @Override
-        public void delete(Recruiter recruiter){this.delete(recruiter);}
-
-        @Override
-        public void deleteById(Long recruiterId){recruiterRepository.deleteById(recruiterId);}
     }
+
+    @Override
+    public Optional<Recruiter> read(Long integer)
+    {
+        return recruiterRepository.findById(integer);
+    }
+
+    @Override
+    public List<Recruiter> findAll()
+    {
+        return this.recruiterRepository.findAll();
+    }
+
+    @Override
+    public void delete(Recruiter recruiter)
+    {
+        this.delete(recruiter);
+    }
+
+
+    @Override
+    public Optional<Recruiter> findRecruiterByEmail(String email)
+    {
+        return recruiterRepository.findByEmail(email);
+    }
+
+    @Override
+    public void deleteById(Long recruiterId)
+    {
+        recruiterRepository.deleteById(recruiterId);
+    }
+}

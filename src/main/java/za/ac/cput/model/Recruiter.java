@@ -3,9 +3,10 @@ package za.ac.cput.model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @AllArgsConstructor
@@ -13,9 +14,9 @@ import java.time.LocalDate;
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @Entity
-public class Recruiter extends User{
-    @Id
-    private Long recruiterId;
+public class Recruiter extends User implements Serializable {
     private String companyName;
     private LocalDate dateAdded;
+    @OneToMany
+    private Set<Vacancy> vacancies;
 }

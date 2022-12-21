@@ -6,12 +6,19 @@ import za.ac.cput.utility.Utility;
 import java.time.LocalDate;
 
 public class RecruiterFactory {
-    public static Recruiter build(Long recruiterId, String recruiterName, String companyName,
-     String contactNumber,
-     LocalDate dateAdded)
+
+
+    public static Recruiter build(String recruiterName, String surname, String companyName,
+                                  String email, String contactNumber, String password,
+                                  LocalDate dateAdded)
     {
-        return Recruiter.builder().firstName(recruiterName).companyName(companyName)
-                                  .cellphone(contactNumber).dateAdded(dateAdded)
+        Utility.checkStringParam("email", email);
+        Utility.checkStringParam("password", password);
+
+        return Recruiter.builder().firstName(recruiterName).surname(surname)
+                                  .email(email).companyName(companyName)
+                                  .password(password).cellphone(contactNumber)
+                                  .userRole("RECRUITER").dateAdded(dateAdded)
                                   .build();
     }
 }

@@ -29,17 +29,17 @@ public class GraduateFactory {
         Utility.checkStringParam("cellphone", cellphone);
         Utility.checkStringParam("graduateId", String.valueOf(graduateId));
 
-        return new Graduate.Builder().setGraduateId(graduateId)
-                .setFirstName(firstName)
-                .setPreferredName(preferredName)
-                .setSurname(surname)
-                .setPrimaryEmail(primaryEmail)
-                .setSecondaryEmail(secondaryEmail)
-                .setPassword(password)
-                .setCellphone(cellphone)
-                .setCV(cv)
-                .setQualification(qualification)
-                .setExperience(experience).build();
+        return Graduate.builder()
+                .firstName(firstName)
+                .preferredName(preferredName)
+                .surname(surname)
+                .email(primaryEmail)
+                .secondaryEmail(secondaryEmail)
+                .password(password)
+                .cellphone(cellphone)
+                .cv(cv)
+                .qualification(qualification)
+                .experience(experience).build();
 
     }
 }

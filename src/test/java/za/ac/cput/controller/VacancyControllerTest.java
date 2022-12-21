@@ -34,9 +34,9 @@ public class VacancyControllerTest {
     @BeforeEach
     void setUp()
     {
-        Recruiter recruiter = RecruiterFactory.build(6L, "John Smith", "Golden Minds", "021 541 3254", LocalDate.now());
-        vacancy = VacancyFactory.build(12L,"Full Stack Engineer", "Hybrid", "Graduate", false, "Johannesburg", recruiter);
-        baseUrl = "http://localhost:" + portNumber + "/" + "graduate-recruitment-portal-api/vacancy/";
+        Recruiter recruiter = RecruiterFactory.build("John", "Smith", "Golden Minds", "john.smith@goldenminds.co.za" ,"021 541 3254", "12345", LocalDate.now());
+        vacancy = VacancyFactory.build(2L,"Full Stack Engineer", "Hybrid", "Graduate", false, "Johannesburg", recruiter);
+        baseUrl = "http://localhost:" + portNumber + "/" + "api/v1/graduate-recruitment-portal-api/vacancy/";
     }
 
     @Test
@@ -54,7 +54,8 @@ public class VacancyControllerTest {
     @Order(2)
     void read()
     {
-        String url = baseUrl + "read/" + vacancy.getVacancyId();
+        long vacancyId = (restTemplate.getForEntity(baseUrl + "find-all", Vacancy[].class).getBody().length);
+        String url = baseUrl + "read/" + vacancyId;
         ResponseEntity<Vacancy> response = restTemplate.getForEntity(url, Vacancy.class);
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode())
@@ -75,6 +76,7 @@ public class VacancyControllerTest {
 
     @Test
     @Order(4)
+    @Disabled
     void delete()
     {
         String url = baseUrl + "delete";

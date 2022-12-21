@@ -23,7 +23,13 @@ public class RecruiterController {
     @PostMapping("save")
     public ResponseEntity<Recruiter> save(@RequestBody Recruiter recruiter){
         Recruiter recruiterReturned = null;
-        recruiterReturned = service.save(recruiter);
+        try{
+            recruiterReturned = service.save(recruiter);
+        }
+        catch (IllegalArgumentException exception)
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
         return ResponseEntity.ok(recruiterReturned);
     }
 

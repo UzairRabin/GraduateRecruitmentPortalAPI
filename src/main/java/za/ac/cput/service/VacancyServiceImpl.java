@@ -3,14 +3,12 @@ package za.ac.cput.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.GraduateRecruitmentPortalAPI;
 import za.ac.cput.factory.VacancyFactory;
+import za.ac.cput.model.Recruiter;
 import za.ac.cput.model.Vacancy;
+import za.ac.cput.repository.IRecruiterRepository;
 import za.ac.cput.repository.IVacancyRepository;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,23 +17,35 @@ import java.util.Optional;
 public class VacancyServiceImpl implements IVacancyService {
 
     IVacancyRepository vacancyRepository;
+    IRecruiterRepository recruiterRepository;
     Vacancy safeVacancy;
+    Optional<Recruiter> persistedRecruiter;
 
     @Autowired
-    public VacancyServiceImpl(IVacancyRepository vacancyService)
+    public VacancyServiceImpl(IVacancyRepository vacancyService,
+                              IRecruiterRepository recruiterRepository)
     {
         this.vacancyRepository = vacancyService;
+        this.recruiterRepository = recruiterRepository;
     }
 
     @Override
     public Vacancy save(Vacancy vacancy)
     {
         try{
-            safeVacancy = VacancyFactory.build(vacancy.getVacancyId(),
-                          vacancy.getVacancyTitle(), vacancy.getJobType(),
-                          vacancy.getJobRole(), vacancy.isApproved(),
-                          vacancy.getLocation(), vacancy.getRecruiter());
-        }catch (IllegalArgumentException /*| IOException*/ exception)
+            persistedRecruiter = recruiterRepository.findByEmail(vacancy.getRecruiter().getEmail());
+            persistedRecruiter.ifPresentOrElse(recruiter -> safeVacancy =
+                    VacancyFactory.build(vacancy.getVacancyId(),
+                            vacancy.getVacancyTitle(), vacancy.getJobType(),
+                            vacancy.getJobRole(), vacancy.isApproved(),
+                            vacancy.getLocation(), recruiter),
+
+                    () -> safeVacancy = VacancyFactory.build(vacancy.getVacancyId(),
+                            vacancy.getVacancyTitle(), vacancy.getJobType(),
+                            vacancy.getJobRole(), vacancy.isApproved(),
+                            vacancy.getLocation(), vacancy.getRecruiter()));
+
+        }catch (IllegalArgumentException exception)
         {
             log.error("Vacancy Service: Save Vacancy:{}", exception);
         }
