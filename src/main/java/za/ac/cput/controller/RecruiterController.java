@@ -33,7 +33,7 @@ public class RecruiterController {
         return ResponseEntity.ok(recruiterReturned);
     }
 
-    @GetMapping("read/recruiterId")
+    @GetMapping("read/{recruiterId}")
     public ResponseEntity<Recruiter> read(@PathVariable long recruiterId) {
         log.info("Read request:{}", recruiterId);
         Recruiter read = this.service.read(recruiterId)

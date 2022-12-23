@@ -38,7 +38,7 @@ public class GraduatePortalDocumentController {
         return ResponseEntity.ok(file);
     }
 
-    @GetMapping("read/{vacancyId}")
+    @GetMapping("read/{documentId}")
     public ResponseEntity<?> read(@PathVariable long documentId)
     {
         GraduatePortalDocument document = service.read(documentId)

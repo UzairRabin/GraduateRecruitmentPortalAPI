@@ -20,11 +20,13 @@ public class GraduateRecruitmentPortalAPI {
 
     public static String getUserDirectory(Long username)
     {
-        return getAppDirectory() + "users" + "//" + username;
+        createDirectory(getAppDirectory() + "//" + "users" + "//" + username + "//");
+        return getAppDirectory() + "//" + "users" + "//" + username + "//";
     }
 
     public static String getUserDocumentsDirectory(Long username)
     {
+        createDirectory(getUserDirectory(username) + "documents" + "//");
         return getUserDirectory(username) + "documents" + "//";
     }
 
@@ -34,12 +36,33 @@ public class GraduateRecruitmentPortalAPI {
         SpringApplication.run(GraduateRecruitmentPortalAPI.class, args);
     }
 
+    private static void createDirectory(String path)
+    {
+        try{
+            File directory = new File(path);
+
+            if(!directory.exists())
+            {
+                if (((directory.mkdirs())))
+                {
+                    log.info("App Directory Creation:{}", directory);
+                } else
+                {
+                    log.error("App Directory Creation:{}", directory);
+                }
+            }
+        }catch (Exception exception)
+        {
+            log.info("App Directory Creation:{}", exception);
+        }
+    }
+
 
     private static void createAppDirectory()
     {
         try{
             appDirectory = new File(System.getenv("APPDATA")
-                    + "\\" + "Graduate " + "Recruitment Portal" + "\\");
+                    + "//" + "Graduate " + "Recruitment Portal" + "//");
 
             if(!appDirectory.exists())
             {

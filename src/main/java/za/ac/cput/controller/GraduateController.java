@@ -11,16 +11,14 @@ import za.ac.cput.service.GraduateServiceImpl;
 import javax.validation.Valid;
 import java.util.Set;
 
-@RestController
-@RequestMapping("/graduate-recrutment-portal/graduate/")
-@Slf4j
-
-
 
 /**
  * @author Chuma Nxazonke
  * Date: 25 November 2022
  * */
+@RestController
+@RequestMapping("api/v1/graduate-recruitment-portal-api/graduate/")
+@Slf4j
 public class GraduateController {
 
     private GraduateServiceImpl graduateServiceImpl;

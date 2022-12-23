@@ -13,6 +13,7 @@ import za.ac.cput.model.Recruiter;
 import za.ac.cput.model.Vacancy;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -34,7 +35,7 @@ public class VacancyControllerTest {
     @BeforeEach
     void setUp()
     {
-        Recruiter recruiter = RecruiterFactory.build("John", "Smith", "Golden Minds", "john.smith@goldenminds.co.za" ,"021 541 3254", "12345", LocalDate.now());
+        Recruiter recruiter = RecruiterFactory.build("John", "Smith", "Golden Minds", "john.smith@goldenminds.co.za" ,"021 541 3254", "12345", new HashSet<>(), LocalDate.now());
         vacancy = VacancyFactory.build(2L,"Full Stack Engineer", "Hybrid", "Graduate", false, "Johannesburg", recruiter);
         baseUrl = "http://localhost:" + portNumber + "/" + "api/v1/graduate-recruitment-portal-api/vacancy/";
     }

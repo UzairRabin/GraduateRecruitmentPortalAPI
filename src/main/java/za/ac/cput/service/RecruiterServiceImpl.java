@@ -33,6 +33,7 @@ public class RecruiterServiceImpl implements IRecruiterService {
                                                recruiter.getEmail(),
                                                recruiter.getCellphone(),
                                                recruiter.getPassword(),
+                                               recruiter.getVacancies(),
                                                recruiter.getDateAdded());
         return recruiterRepository.save(safeRecruiter);
     }
