@@ -30,25 +30,19 @@ public class VacancyServiceImpl implements IVacancyService {
     }
 
     @Override
-    public Vacancy save(Vacancy vacancy)
+    public Vacancy save(Vacancy vacancy) throws IllegalArgumentException
     {
-        try{
-            persistedRecruiter = recruiterRepository.findByEmail(vacancy.getRecruiter().getEmail());
-            persistedRecruiter.ifPresentOrElse(recruiter -> safeVacancy =
-                    VacancyFactory.build(vacancy.getVacancyId(),
-                            vacancy.getVacancyTitle(), vacancy.getJobType(),
-                            vacancy.getJobRole(), vacancy.isApproved(),
-                            vacancy.getLocation(), recruiter),
+        persistedRecruiter = recruiterRepository.findByEmail(vacancy.getRecruiter().getEmail());
+        persistedRecruiter.ifPresentOrElse(recruiter -> safeVacancy =
+                        VacancyFactory.build(vacancy.getVacancyId(),
+                                vacancy.getVacancyTitle(), vacancy.getJobType(),
+                                vacancy.getJobRole(), vacancy.isApproved(),
+                                vacancy.getLocation(), recruiter),
 
-                    () -> safeVacancy = VacancyFactory.build(vacancy.getVacancyId(),
-                            vacancy.getVacancyTitle(), vacancy.getJobType(),
-                            vacancy.getJobRole(), vacancy.isApproved(),
-                            vacancy.getLocation(), vacancy.getRecruiter()));
-
-        }catch (IllegalArgumentException exception)
-        {
-            log.error("Vacancy Service: Save Vacancy:{}", exception);
-        }
+                () -> safeVacancy = VacancyFactory.build(vacancy.getVacancyId(),
+                        vacancy.getVacancyTitle(), vacancy.getJobType(),
+                        vacancy.getJobRole(), vacancy.isApproved(),
+                        vacancy.getLocation(), vacancy.getRecruiter()));
         return vacancyRepository.save(safeVacancy);
     }
 

@@ -27,7 +27,13 @@ public class VacancyController {
     public ResponseEntity<Vacancy> save(@RequestBody Vacancy vacancy)
     {
         Vacancy vacancyReturned = null;
-        vacancyReturned = service.save(vacancy);
+        try{
+            vacancyReturned = service.save(vacancy);
+        }
+        catch(IllegalArgumentException excpetion)
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
         return ResponseEntity.ok(vacancyReturned);
     }
 

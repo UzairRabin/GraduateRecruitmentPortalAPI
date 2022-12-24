@@ -30,15 +30,12 @@ public class QualificationController {
 
         Qualification validatedQualification;
         try{
-
-            validatedQualification = QualificationFactory.build(qualification.getQualificationId(), qualification.getQualificationName(),
-                    qualification.getQualificationDescription());
+            validatedQualification = qualificationService.save(qualification);
         }catch(IllegalArgumentException e){
             log.info("Save request error: {}", e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        Qualification save = qualificationService.save(validatedQualification);
-        return ResponseEntity.ok(save);
+        return ResponseEntity.ok(validatedQualification);
     }
 
     @DeleteMapping("delete/{id}")
@@ -57,10 +54,10 @@ public class QualificationController {
         return ResponseEntity.ok(qualification);
     }
 
-//    @GetMapping("read-all")
-//    @CrossOrigin(origins = "http://localhost:4200")
-//    public ResponseEntity<List<Qualification>> readAll(){
-//        List<Qualification> qualificationList = this.qualificationService.findAll();
-//        return ResponseEntity.ok(qualificationList);
-//    }
+    @GetMapping("read-all")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<List<Qualification>> readAll(){
+        List<Qualification> qualificationList = this.qualificationService.findAll();
+        return ResponseEntity.ok(qualificationList);
+    }
 }
