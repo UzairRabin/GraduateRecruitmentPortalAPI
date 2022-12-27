@@ -30,6 +30,7 @@ public class Graduate extends User implements Serializable {
 
     @NotNull
     private String preferredName;
+
     @NotNull
     private String secondaryEmail;
 

@@ -41,7 +41,7 @@ public class RecruiterController {
         return ResponseEntity.ok(read);
     }
 
-    @GetMapping("all")
+    @GetMapping("find-all")
     public ResponseEntity<List<Recruiter>>findAll(){List<Recruiter> recruiter = this.service.findAll();
         return ResponseEntity.ok(recruiter);}
 

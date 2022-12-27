@@ -49,7 +49,7 @@ public class ExperienceController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("all")
+    @GetMapping("find-all")
     public ResponseEntity<List<Experience>> findAll() {
         List<Experience> findAllTeamList = this.experienceService.findAll();
         return ResponseEntity.ok(findAllTeamList);

@@ -29,7 +29,7 @@ public class GraduateController {
         this.graduateServiceImpl = graduateServiceImpl;
     }
 
-    @PostMapping("saveGraduate/graduate")
+    @PostMapping("save")
     public ResponseEntity<Graduate> save(@Valid @RequestBody Graduate graduate)
     {
         log.info("Save Request: {}", graduate);
@@ -37,7 +37,7 @@ public class GraduateController {
         return ResponseEntity.ok(save);
     }
 
-    @GetMapping("getGraduate/{id}")
+    @GetMapping("read/{id}")
     public ResponseEntity<Graduate> read(@PathVariable String id)
     {
         log.info("Read Request: {}", id);
@@ -58,7 +58,7 @@ public class GraduateController {
     }
 **/
 
-    @DeleteMapping("deleteGraduate/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<Graduate> delete(@PathVariable String id)
     {
         log.info("Delete Request: {}", id);
@@ -66,7 +66,7 @@ public class GraduateController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("getAll/graduate")
+    @GetMapping("find-all")
     public ResponseEntity<Set<Graduate>> getAll()
     {
         Set<Graduate> administrationSet = this.graduateServiceImpl.getAll();

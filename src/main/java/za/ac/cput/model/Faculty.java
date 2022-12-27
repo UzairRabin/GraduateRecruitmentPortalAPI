@@ -3,10 +3,8 @@ package za.ac.cput.model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @AllArgsConstructor
@@ -19,4 +17,6 @@ public class Faculty {
     private Long facultyId;
     private String facultyName;
     private String facultyDescription;
+    @OneToMany(mappedBy = "faculty")
+    private Set<Department> departments;
 }
