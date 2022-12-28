@@ -3,12 +3,16 @@ package za.ac.cput.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import za.ac.cput.exception.NotRegisteredUserException;
+import za.ac.cput.exception.PasswordMismatchException;
+import za.ac.cput.factory.GraduateFactory;
 import za.ac.cput.model.Graduate;
 import za.ac.cput.repository.IGraduateRepository;
+import za.ac.cput.serviceFacade.UserAuthenticatorServiceFacadeImpl;
 
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Chuma Nxazonke
@@ -16,7 +20,7 @@ import java.util.stream.Collectors;
  * Date: 25 November 2022
  */
 @Service
-public class GraduateServiceImpl {
+public class GraduateServiceImpl implements IGraduateService, IUserAuthenticatorService<Graduate>{
 
     private final IGraduateRepository repository;
 
@@ -25,46 +29,54 @@ public class GraduateServiceImpl {
         this.repository = repository;
     }
 
-    //Save graduate details
-    public Graduate saveGraduate (Graduate graduate){
-        return this.repository.save(graduate);
+    public Graduate save(Graduate graduate) throws IllegalArgumentException
+    {
+       Graduate validatedGraduate = GraduateFactory.build(graduate.getFirstName(),
+                graduate.getPreferredName(),
+                graduate.getSurname(),
+                graduate.getEmail(),
+                graduate.getSecondaryEmail(),
+                graduate.getPassword(),
+                graduate.getCellphone(),
+                graduate.getCv(),
+                graduate.getQualification(),
+                graduate.getExperience());
+
+        return this.repository.save(validatedGraduate);
     }
 
 
-    //Read method
-    public Graduate readGraduate(String graduateId) {
-        return this.repository.findById(graduateId).orElse(null);
+    public Optional<Graduate> read(Long graduateId)
+    {
+        return this.repository.findById(graduateId);
     }
 
-    /**
-    //Don't forget to include update method here
-    public  Graduate updateGraduate(Graduate graduate){
-        Graduate existingGraduate = repository.findById(graduate.getGraduateId()).orElse(null);
-        existingGraduate.setFirstName(graduate.getFirstName());
-        existingGraduate.setPreferredName(graduate.getPreferredName());
-        existingGraduate.setSurname(graduate.getSurname());
-        existingGraduate.setPrimaryEmail(graduate.getPrimaryEmail());
-        existingGraduate.setSecondaryEmail(graduate.getSecondaryEmail());
-        existingGraduate.setPassword(graduate.getPassword());
-        existingGraduate.setCellphone(graduate.getCellphone());
-
-        return this.repository.save(existingGraduate);
-    }
-**/
-
-    //Delete method
-    public boolean deleteGraduate(String graduateId) {
-        if(this.repository.existsById(graduateId)){
-            this.repository.deleteById(graduateId);
-            return true;
-        }
-        return false;
+    public Optional<Graduate> findGraduateByEmail(String email)
+    {
+        return this.repository.findByEmail(email);
     }
 
-    //Get All method
-    public Set<Graduate> getAll() {
-        return repository.findAll().stream().collect(Collectors.toSet());
+    public void deleteById(Long graduateId)
+    {
+        this.repository.deleteById(graduateId);
     }
 
+    public List<Graduate> findAll()
+    {
+        return this.repository.findAll();
+    }
+
+    public void delete(Graduate graduate)
+    {
+        this.repository.delete(graduate);
+    }
+
+    @Override
+    public Graduate login(Graduate user) throws NotRegisteredUserException, PasswordMismatchException
+    {
+        Optional<Graduate> registeredUser = findGraduateByEmail(user.getEmail());
+        return UserAuthenticatorServiceFacadeImpl.validateUserCredentials(
+               registeredUser.isPresent(), user, registeredUser.get());
+    }
 }
 

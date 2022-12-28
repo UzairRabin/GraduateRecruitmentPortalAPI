@@ -11,7 +11,9 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
+/**
+ * @author Mbuso Kotobe
+ * */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

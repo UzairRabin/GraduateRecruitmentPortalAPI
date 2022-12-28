@@ -5,6 +5,7 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.ac.cput.factory.DepartmentFactory;
 import za.ac.cput.model.Department;
 import za.ac.cput.repository.IDepartmentRepository;
 
@@ -23,7 +24,10 @@ public class DepartmentServiceImpl implements IDepartmentService{
     }
 
     @Override
-    public Department save(Department department) {
+    public Department save(Department object) throws IllegalArgumentException
+    {
+        Department department = DepartmentFactory.build(object.getDepartmentName(),
+                                                        object.getFaculty());
         return this.repository.save(department);
     }
 
@@ -39,8 +43,8 @@ public class DepartmentServiceImpl implements IDepartmentService{
     }
 
     @Override
-    public void delete(Department department) {
-        this.repository.delete(department);
+    public void delete(Department object) {
+        this.repository.delete(object);
     }
 
     @Override

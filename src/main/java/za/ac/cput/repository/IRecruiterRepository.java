@@ -5,6 +5,9 @@ import za.ac.cput.model.Recruiter;
 
 import java.util.Optional;
 
+/**
+ * @author Mbuso Kotobe
+ * */
 public interface IRecruiterRepository extends JpaRepository<Recruiter, Long> {
     Optional<Recruiter> findByEmail(String email);
 }

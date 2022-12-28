@@ -12,6 +12,10 @@ import za.ac.cput.repository.IVacancyRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Mbuso Kotobe
+ *
+ * */
 @Slf4j
 @Service
 public class VacancyServiceImpl implements IVacancyService {
@@ -30,19 +34,19 @@ public class VacancyServiceImpl implements IVacancyService {
     }
 
     @Override
-    public Vacancy save(Vacancy vacancy) throws IllegalArgumentException
+    public Vacancy save(Vacancy object) throws IllegalArgumentException
     {
-        persistedRecruiter = recruiterRepository.findByEmail(vacancy.getRecruiter().getEmail());
+        persistedRecruiter = recruiterRepository.findByEmail(object.getRecruiter().getEmail());
         persistedRecruiter.ifPresentOrElse(recruiter -> safeVacancy =
-                        VacancyFactory.build(vacancy.getVacancyId(),
-                                vacancy.getVacancyTitle(), vacancy.getJobType(),
-                                vacancy.getJobRole(), vacancy.isApproved(),
-                                vacancy.getLocation(), recruiter),
+                        VacancyFactory.build(object.getVacancyId(),
+                                object.getVacancyTitle(), object.getJobType(),
+                                object.getJobRole(), object.isApproved(),
+                                object.getLocation(), recruiter),
 
-                () -> safeVacancy = VacancyFactory.build(vacancy.getVacancyId(),
-                        vacancy.getVacancyTitle(), vacancy.getJobType(),
-                        vacancy.getJobRole(), vacancy.isApproved(),
-                        vacancy.getLocation(), vacancy.getRecruiter()));
+                () -> safeVacancy = VacancyFactory.build(object.getVacancyId(),
+                        object.getVacancyTitle(), object.getJobType(),
+                        object.getJobRole(), object.isApproved(),
+                        object.getLocation(), object.getRecruiter()));
         return vacancyRepository.save(safeVacancy);
     }
 
@@ -59,9 +63,9 @@ public class VacancyServiceImpl implements IVacancyService {
     }
 
     @Override
-    public void delete(Vacancy vacancy)
+    public void delete(Vacancy object)
     {
-        vacancyRepository.delete(vacancy);
+        vacancyRepository.delete(object);
     }
 
     @Override

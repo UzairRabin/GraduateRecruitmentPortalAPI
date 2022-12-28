@@ -54,7 +54,7 @@ public class CvServiceImpl implements ICvService {
     }
 
     @Override
-    public Cv save(Cv cv)
+    public Cv save(Cv object)
     {
         throw new NotImplementedException("Use the overload of save(MultipartFile cv, String username)");
     }
@@ -78,8 +78,8 @@ public class CvServiceImpl implements ICvService {
     }
 
     @Override
-    public void delete(Cv cv) {
-        this.repository.delete(cv);
+    public void delete(Cv object) {
+        this.repository.delete(object);
     }
 
 

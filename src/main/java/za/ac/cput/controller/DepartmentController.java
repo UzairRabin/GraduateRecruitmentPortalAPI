@@ -29,20 +29,17 @@ public class DepartmentController {
     }
 
     @PostMapping("save")
-    public ResponseEntity<Department> save(@Valid @RequestBody Department department){
+    public ResponseEntity<Department> save(@Valid @RequestBody Department department)
+    {
         log.info("Save request:{}", department);
         Department departments;
         try{
-            departments = DepartmentFactory.build(department.getDepartmentId(), department.getDepartmentName());
+            departments = this.departmentService.save(department);
         } catch (IllegalArgumentException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
-        Department save = this.departmentService.save(department);
-        return ResponseEntity.ok(save);
-    }
 
-    private Optional<Department> getById(int departmentId){
-        return this.departmentService.read(departmentId);
+        return ResponseEntity.ok(departments);
     }
 
     @GetMapping("read/{departmentId}")
@@ -62,14 +59,12 @@ public class DepartmentController {
     @DeleteMapping("delete/{departmentId}")
     public ResponseEntity<Void> delete(@PathVariable int departmentId) {
         log.info("delete request:{}",departmentId);
-        Optional<Department> department  = getById(departmentId);
-        department.ifPresent(this.departmentService::delete);
+        this.departmentService.deleteById(departmentId);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("all")
-    public ResponseEntity<List<Department>> getAll() {
-        List<Department> department = this.departmentService.getAll();
-        return ResponseEntity.ok(department);
+    @GetMapping("find-all")
+    public ResponseEntity<List<Department>> findAll() {
+        return ResponseEntity.ok(this.departmentService.findAll());
     }
 }

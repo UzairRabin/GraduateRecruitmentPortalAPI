@@ -13,7 +13,8 @@ import org.apache.commons.lang3.StringUtils;
  * */
 public class Utility {
 
-    public static void checkStringParam(String paramName, String paramValue) {
+    public static void checkStringParam(String paramName, String paramValue) throws IllegalArgumentException
+    {
         if(isEmptyOrNull(paramValue))
             throw new IllegalArgumentException(
                     String.format("Invalid value for params: %s", paramName)

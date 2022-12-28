@@ -17,6 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * @author Mbuso Kotobe
+ *
+ * */
 @Service
 @Slf4j
 public class GraduatePortalDocumentServiceImpl implements IGraduatePortalDocumentService{
@@ -32,7 +37,7 @@ public class GraduatePortalDocumentServiceImpl implements IGraduatePortalDocumen
 
 
     @Override
-    public GraduatePortalDocument save(GraduatePortalDocument graduatePortalDocument)
+    public GraduatePortalDocument save(GraduatePortalDocument object)
     { throw new UnsupportedOperationException(); }
 
     public GraduatePortalDocument save(MultipartFile file, Long userId) throws IllegalStateException
@@ -101,6 +106,6 @@ public class GraduatePortalDocumentServiceImpl implements IGraduatePortalDocumen
     }
 
     @Override
-    public void delete(GraduatePortalDocument graduatePortalDocument)
+    public void delete(GraduatePortalDocument object)
     { throw new UnsupportedOperationException(); }
 }

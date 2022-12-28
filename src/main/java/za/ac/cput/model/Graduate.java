@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import java.util.Objects;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author Chuma Nxazonke
@@ -23,11 +24,6 @@ import java.io.Serializable;
 @Entity
 public class Graduate extends User implements Serializable {
 
-    //Declaring all the private fields for the program
-//    @Id
-//    @Column(name = "graduateId")
-//    private String graduateId;
-
     @NotNull
     private String preferredName;
 
@@ -38,11 +34,9 @@ public class Graduate extends User implements Serializable {
     @OneToOne
     private Cv cv;
 
-    @JoinColumn(name = "qualification")
-    @OneToOne
-    private Qualification qualification;
+    @OneToMany
+    private Set<Qualification> qualification;
 
-    @JoinColumn(name = "experienceId")
-    @OneToOne
-    private Experience experience;
+    @OneToMany
+    private Set<Experience> experience;
 }

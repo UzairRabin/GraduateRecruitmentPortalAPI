@@ -11,6 +11,9 @@ import za.ac.cput.service.IFacultyService;
 
 import java.util.List;
 
+/**
+ * @author Mbuso Kotobe
+ * */
 @RestController
 @RequestMapping("api/v1/graduate-recruitment-portal-api/faculty/")
 @Slf4j

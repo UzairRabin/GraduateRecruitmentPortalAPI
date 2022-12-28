@@ -26,13 +26,18 @@ public class Security {
     public UserDetailsService users() {
 
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user")
-                .password(passwordEncoder().encode("12345"))
+        manager.createUser(User.withUsername("graduate")
+                .password(bCryptPasswordEncoder().encode("12345"))
                 .roles("USER")
                 .build());
 
+        manager.createUser(User.withUsername("recruiter")
+                .password(bCryptPasswordEncoder().encode("54321"))
+                .roles("USER","RECRUITER")
+                .build());
+
         manager.createUser(User.withUsername("admin")
-                .password(passwordEncoder().encode("54321"))
+                .password(bCryptPasswordEncoder().encode("54321"))
                 .roles("USER","ADMIN")
                 .build());
 
@@ -63,7 +68,8 @@ public class Security {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public static BCryptPasswordEncoder bCryptPasswordEncoder()
+    {
         return new BCryptPasswordEncoder();
     }
 

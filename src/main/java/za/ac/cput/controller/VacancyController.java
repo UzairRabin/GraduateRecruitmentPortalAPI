@@ -11,6 +11,9 @@ import za.ac.cput.service.IVacancyService;
 
 import java.util.List;
 
+/**
+ * @author Mbuso Kotobe
+ * */
 @RestController
 @RequestMapping("api/v1/graduate-recruitment-portal-api/vacancy/")
 @Slf4j

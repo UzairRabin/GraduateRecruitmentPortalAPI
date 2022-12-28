@@ -20,8 +20,10 @@ public class Department implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull private int departmentId;
-    @NotNull private String departmentName;
+    private Long departmentId;
+
+    private String departmentName;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Faculty faculty;
 }

@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * @author Mbuso Kotobe
+ * */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

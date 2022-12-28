@@ -12,6 +12,10 @@ import za.ac.cput.repository.IFacultyRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Mbuso Kotobe
+ *
+ * */
 @Service
 public class FacultyServiceImpl implements IFacultyService{
     IFacultyRepository facultyRepository;
@@ -25,12 +29,12 @@ public class FacultyServiceImpl implements IFacultyService{
     }
 
     @Override
-    public Faculty save(Faculty faculty) throws IllegalArgumentException
+    public Faculty save(Faculty object) throws IllegalArgumentException
     {
-        safeFaculty = FacultyFactory.build(faculty.getFacultyName(),
-                                           faculty.getFacultyDescription());
+        safeFaculty = FacultyFactory.build(object.getFacultyName(),
+                                           object.getFacultyDescription());
 
-        return this.facultyRepository.save(faculty);
+        return this.facultyRepository.save(object);
     }
 
     @Override
@@ -46,9 +50,9 @@ public class FacultyServiceImpl implements IFacultyService{
     }
 
     @Override
-    public void delete(Faculty faculty)
+    public void delete(Faculty object)
     {
-        this.facultyRepository.delete(faculty);
+        this.facultyRepository.delete(object);
     }
 
     @Override

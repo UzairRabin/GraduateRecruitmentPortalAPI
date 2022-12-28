@@ -6,6 +6,9 @@ import za.ac.cput.utility.Utility;
 
 import javax.persistence.ManyToOne;
 
+/**
+ * @author Mbuso Kotobe
+ * */
 public class VacancyFactory {
 
     public static Vacancy build(Long vacancyId, String vacancyTitle, String jobType,

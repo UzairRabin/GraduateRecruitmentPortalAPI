@@ -10,6 +10,8 @@ import za.ac.cput.model.Qualification;
 
 import za.ac.cput.utility.Utility;
 
+import java.util.Set;
+
 
 /**
  * @author Chuma Nxazonke
@@ -18,8 +20,8 @@ import za.ac.cput.utility.Utility;
 
 public class GraduateFactory {
 
-    public static Graduate createGraduateFactory (String graduateId, String firstName, String preferredName, String surname, String primaryEmail, String secondaryEmail, String password, String cellphone,Cv cv, Qualification qualification, Experience experience){
-
+    public static Graduate build(String firstName, String preferredName, String surname, String primaryEmail, String secondaryEmail, String password, String cellphone, Cv cv, Set<Qualification> qualification, Set<Experience> experience) throws IllegalArgumentException
+    {
         Utility.checkStringParam("firstName", firstName);
         Utility.checkStringParam("preferredName", preferredName);
         Utility.checkStringParam("surname", surname);
@@ -27,7 +29,6 @@ public class GraduateFactory {
         Utility.checkStringParam("secondaryEmail", secondaryEmail);
         Utility.checkStringParam("password", password);
         Utility.checkStringParam("cellphone", cellphone);
-        Utility.checkStringParam("graduateId", String.valueOf(graduateId));
 
         return Graduate.builder()
                 .firstName(firstName)

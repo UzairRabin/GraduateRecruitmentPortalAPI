@@ -2,6 +2,7 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.ac.cput.factory.ExperienceFactory;
 import za.ac.cput.model.Experience;
 import za.ac.cput.repository.IExperienceRepository;
 
@@ -18,8 +19,14 @@ public class ExperienceServiceImpl implements IExperienceService {
     }
 
     @Override
-    public Experience save(Experience experience) {
-        return this.repository.save(experience);
+    public Experience save(Experience experience) throws IllegalArgumentException
+    {
+        Experience newExperience = ExperienceFactory.build(experience.getJobTitle(),
+                experience.getAssumedRole(),
+                experience.getStartDate(),
+                experience.getEndDate(),
+                experience.getGraduate());
+        return this.repository.save(newExperience);
     }
 
     @Override
@@ -28,8 +35,8 @@ public class ExperienceServiceImpl implements IExperienceService {
     }
 
     @Override
-    public void delete(Experience experience) {
-        this.repository.delete(experience);
+    public void delete(Experience object) {
+        this.repository.delete(object);
     }
 
     @Override

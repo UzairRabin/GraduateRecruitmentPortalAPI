@@ -6,9 +6,11 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.model.Graduate;
+import za.ac.cput.model.Vacancy;
 import za.ac.cput.service.GraduateServiceImpl;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 
 
@@ -21,7 +23,7 @@ import java.util.Set;
 @Slf4j
 public class GraduateController {
 
-    private GraduateServiceImpl graduateServiceImpl;
+    private final GraduateServiceImpl graduateServiceImpl;
 
     @Autowired
     GraduateController(GraduateServiceImpl graduateServiceImpl)
@@ -33,46 +35,31 @@ public class GraduateController {
     public ResponseEntity<Graduate> save(@Valid @RequestBody Graduate graduate)
     {
         log.info("Save Request: {}", graduate);
-        Graduate save = this.graduateServiceImpl.saveGraduate(graduate);
+        Graduate save = this.graduateServiceImpl.save(graduate);
         return ResponseEntity.ok(save);
     }
 
     @GetMapping("read/{id}")
-    public ResponseEntity<Graduate> read(@PathVariable String id)
+    public ResponseEntity<Graduate> read(@PathVariable Long id)
     {
         log.info("Read Request: {}", id);
-        try
-        {
-            Graduate read = this.graduateServiceImpl.readGraduate(id);
-            return ResponseEntity.ok(read);
-        }
-        catch (IllegalArgumentException e)
-        {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        Graduate graduate = graduateServiceImpl.read(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return ResponseEntity.ok(graduate);
     }
-/**
-    @PutMapping("/update")
-    public Graduate updateGraduate (@RequestBody Graduate graduate){
-        return graduateServiceImpl.updateGraduate(graduate);
-    }
-**/
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Graduate> delete(@PathVariable String id)
+    public ResponseEntity<Graduate> delete(@PathVariable Long id)
     {
         log.info("Delete Request: {}", id);
-        this.graduateServiceImpl.deleteGraduate(id);
+        this.graduateServiceImpl.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("find-all")
-    public ResponseEntity<Set<Graduate>> getAll()
+    public ResponseEntity<List<Graduate>> findAll()
     {
-        Set<Graduate> administrationSet = this.graduateServiceImpl.getAll();
-        return ResponseEntity.ok(administrationSet);
+        return ResponseEntity.ok(this.graduateServiceImpl.findAll());
     }
-
-
 }
 

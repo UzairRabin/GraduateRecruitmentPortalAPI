@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IService<T, ID> {
-    T save(T t);
+    T save(T object);
     Optional<T> read(ID id);
     List<T> findAll();
-    void delete(T t);
+    void delete(T object);
 }

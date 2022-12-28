@@ -7,6 +7,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.factory.DepartmentFactory;
+import za.ac.cput.factory.FacultyFactory;
 import za.ac.cput.model.Department;
 
 import java.util.List;
@@ -25,7 +26,8 @@ class DepartmentServiceImplTest {
     @Autowired
     protected DepartmentServiceImpl service;
 
-    Department departmentService = DepartmentFactory.build(2,"IT Department");
+    Department departmentService = DepartmentFactory.build("IT Department",
+            FacultyFactory.build("Informatics & Design", "The Faculty of Informatics & Design is the creative hub of CPUT. The faculty focuses on design-thinking and encourages graduates to use design to contribute to society."));
 
     @Test
     void a_save() {

@@ -22,11 +22,12 @@ public class QualificationServiceImpI implements IQualificationService{
     }
 
     @Override
-    public Qualification save(Qualification qualification)
+    public Qualification save(Qualification object)
     {
-        validatedQualification = QualificationFactory.build(qualification.getQualificationId(),
-                qualification.getQualificationName(),
-                qualification.getQualificationDescription());
+        validatedQualification = QualificationFactory.build(
+                object.getQualificationName(),
+                object.getQualificationDescription(),
+                object.getGraduate());
 
         return this.repository.save(validatedQualification);
     }
@@ -38,9 +39,9 @@ public class QualificationServiceImpI implements IQualificationService{
     }
 
     @Override
-    public void delete(Qualification qualification)
+    public void delete(Qualification object)
     {
-        this.repository.delete(qualification);
+        this.repository.delete(object);
     }
 
     @Override

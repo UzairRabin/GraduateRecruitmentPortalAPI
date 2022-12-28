@@ -25,8 +25,14 @@ public class ExperienceController {
 
     @PostMapping("save")
     public ResponseEntity<Experience> save(@Valid @RequestBody Experience experience) {
-        Experience newExperience = ExperienceFactory.build(experience.getExperienceId(), experience.getJobTitle(), experience.getAssumedRole(), experience.getStartDate(), experience.getEndDate());
-        Experience experienceSaved = this.experienceService.save(newExperience);
+        Experience experienceSaved = null;
+        try
+        {
+            experienceSaved = this.experienceService.save(experience);
+        }catch (IllegalArgumentException exception)
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
         return ResponseEntity.ok(experienceSaved);
     }
 
