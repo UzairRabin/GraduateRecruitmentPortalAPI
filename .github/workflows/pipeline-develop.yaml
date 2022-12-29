@@ -24,8 +24,8 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       # Build with Gradle
-      - name: Build with Maven
-        run: maven build
+#      - name: Build with Maven
+#        run: maven build
 
       # Configure AWS credentials
       - name: Configure AWS credentials
