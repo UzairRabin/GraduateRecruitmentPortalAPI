@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.model.Qualification;
 
 @Repository
-public interface IQualificationRepository extends JpaRepository<Qualification, String> {
+public interface IQualificationRepository extends JpaRepository<Qualification, Long> {
 }

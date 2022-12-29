@@ -37,7 +37,7 @@ public class ExperienceController {
     }
 
     @GetMapping("read/{id}")
-    public ResponseEntity<Experience> read(@PathVariable String id) {
+    public ResponseEntity<Experience> read(@PathVariable Long id) {
         Experience readExperience= this.experienceService.read(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Experience not found"));
         return ResponseEntity.ok(readExperience);
@@ -50,7 +50,7 @@ public class ExperienceController {
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable String id) {
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         this.experienceService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

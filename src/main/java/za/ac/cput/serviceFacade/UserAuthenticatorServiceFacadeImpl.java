@@ -1,7 +1,6 @@
 package za.ac.cput.serviceFacade;
 
 import io.jsonwebtoken.Jwts;
-import org.w3c.dom.css.Rect;
 import za.ac.cput.exception.NotRegisteredUserException;
 import za.ac.cput.exception.PasswordMismatchException;
 import za.ac.cput.factory.GraduateFactory;
@@ -11,7 +10,6 @@ import za.ac.cput.model.Recruiter;
 import za.ac.cput.security.Security;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
@@ -40,6 +38,7 @@ public class UserAuthenticatorServiceFacadeImpl {
                                       existingUser.getCellphone(),
                                       existingUser.getPassword(),
                                       existingUser.getVacancies(),
+                                      existingUser.getUserRole(),
                                       existingUser.getDateAdded());
     }
 
@@ -61,9 +60,10 @@ public class UserAuthenticatorServiceFacadeImpl {
                                      existingUser.getSecondaryEmail(),
                                      existingUser.getPassword(),
                                      existingUser.getCellphone(),
+                                     existingUser.getUserRole(),
                                      existingUser.getCv(),
-                                     existingUser.getQualification(),
-                                     existingUser.getExperience());
+                                     existingUser.getQualifications(),
+                                     existingUser.getExperiences());
     }
 
     public static String generateSessionToken(Recruiter recruiter)

@@ -15,10 +15,11 @@ public class RecruiterFactory {
 
     public static Recruiter build(String recruiterName, String surname, String companyName,
                                   String email, String contactNumber, String password,
-                                  Set<Vacancy> vacancies, LocalDate dateAdded)
+                                  Set<Vacancy> vacancies, String userRole, LocalDate dateAdded)
     {
         Utility.checkStringParam("email", email);
         Utility.checkStringParam("password", password);
+        Utility.checkStringParam("userRole", userRole);
 
         return Recruiter.builder().firstName(recruiterName).surname(surname)
                                   .email(email).companyName(companyName)

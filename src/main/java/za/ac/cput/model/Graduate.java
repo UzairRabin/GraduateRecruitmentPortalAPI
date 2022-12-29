@@ -6,7 +6,6 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import java.util.Objects;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -34,9 +33,9 @@ public class Graduate extends User implements Serializable {
     @OneToOne
     private Cv cv;
 
-    @OneToMany
-    private Set<Qualification> qualification;
+    @OneToMany(mappedBy = "graduate", cascade = CascadeType.ALL)
+    private Set<Qualification> qualifications;
 
-    @OneToMany
-    private Set<Experience> experience;
+    @OneToMany(mappedBy = "graduate", cascade = CascadeType.ALL)
+    private Set<Experience> experiences;
 }

@@ -32,7 +32,7 @@ public class GraduateController {
     }
 
     @PostMapping("save")
-    public ResponseEntity<Graduate> save(@Valid @RequestBody Graduate graduate)
+    public ResponseEntity<Graduate> save(@RequestBody Graduate graduate)
     {
         log.info("Save Request: {}", graduate);
         Graduate save = this.graduateServiceImpl.save(graduate);

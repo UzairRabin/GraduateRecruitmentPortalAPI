@@ -30,7 +30,7 @@ public class ExperienceServiceImpl implements IExperienceService {
     }
 
     @Override
-    public Optional<Experience> read(String ID) {
+    public Optional<Experience> read(Long ID) {
         return this.repository.findById(ID);
     }
 
@@ -40,7 +40,7 @@ public class ExperienceServiceImpl implements IExperienceService {
     }
 
     @Override
-    public void deleteById(String Id) {
+    public void deleteById(Long Id) {
         this.repository.deleteById(Id);
     }
 
@@ -49,8 +49,4 @@ public class ExperienceServiceImpl implements IExperienceService {
         return this.repository.findAll();
     }
 
-    public Optional<Experience> findExperienceByExperienceId(String experienceId) {
-        return this.repository.findExperienceByExperienceId(experienceId);
-
-    }
 }

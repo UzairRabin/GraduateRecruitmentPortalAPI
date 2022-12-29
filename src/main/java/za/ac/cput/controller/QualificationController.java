@@ -48,7 +48,7 @@ public class QualificationController {
 
     @GetMapping("read/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Qualification> read (@PathVariable String id){
+    public ResponseEntity<Qualification> read (@PathVariable Long id){
         log.info("Read request: {}", id);
         Qualification qualification = this.qualificationService.read(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(qualification);

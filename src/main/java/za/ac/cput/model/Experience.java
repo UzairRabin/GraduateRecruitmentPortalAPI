@@ -22,6 +22,7 @@ public class Experience {
     private String startDate;
     private String endDate;
     @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
     Graduate graduate;
 
 }

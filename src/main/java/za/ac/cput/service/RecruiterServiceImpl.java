@@ -41,6 +41,7 @@ public class RecruiterServiceImpl implements IRecruiterService, IUserAuthenticat
                                                object.getCellphone(),
                                                object.getPassword(),
                                                object.getVacancies(),
+                                               object.getUserRole(),
                                                object.getDateAdded());
         return recruiterRepository.save(safeRecruiter);
     }

@@ -19,5 +19,6 @@ public class Qualification implements Serializable {
     private String qualificationName;
     private String qualificationDescription;
     @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
     private Graduate graduate;
 }

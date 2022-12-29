@@ -15,8 +15,8 @@ import java.io.File;
 import java.io.IOException;
 
 @Slf4j
-@EnableSwagger2
 @SpringBootApplication
+@EnableSwagger2
 public class GraduateRecruitmentPortalAPI {
 
     private static File appDirectory = null;
@@ -38,14 +38,7 @@ public class GraduateRecruitmentPortalAPI {
         return getUserDirectory(username) + "documents" + "//";
     }
 
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
-    }
+
 
     public static void main(String[] args)
     {

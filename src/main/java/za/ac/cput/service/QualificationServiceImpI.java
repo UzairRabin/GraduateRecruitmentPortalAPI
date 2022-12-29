@@ -33,7 +33,7 @@ public class QualificationServiceImpI implements IQualificationService{
     }
 
     @Override
-    public Optional<Qualification> read(String s)
+    public Optional<Qualification> read(Long s)
     {
         return this.repository.findById(s);
     }

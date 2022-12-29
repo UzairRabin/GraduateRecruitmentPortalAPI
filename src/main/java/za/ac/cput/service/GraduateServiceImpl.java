@@ -38,9 +38,10 @@ public class GraduateServiceImpl implements IGraduateService, IUserAuthenticator
                 graduate.getSecondaryEmail(),
                 graduate.getPassword(),
                 graduate.getCellphone(),
+                graduate.getUserRole(),
                 graduate.getCv(),
-                graduate.getQualification(),
-                graduate.getExperience());
+                graduate.getQualifications(),
+                graduate.getExperiences());
 
         return this.repository.save(validatedGraduate);
     }
