@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 
 import za.ac.cput.exception.NotRegisteredUserException;
 import za.ac.cput.exception.PasswordMismatchException;
+import za.ac.cput.exception.UserExistsException;
 import za.ac.cput.factory.GraduateFactory;
 import za.ac.cput.model.Graduate;
+import za.ac.cput.model.UserSession;
 import za.ac.cput.repository.IGraduateRepository;
 import za.ac.cput.serviceFacade.UserAuthenticatorServiceFacadeImpl;
 
@@ -36,13 +38,25 @@ public class GraduateServiceImpl implements IGraduateService, IUserAuthenticator
                 graduate.getSurname(),
                 graduate.getEmail(),
                 graduate.getSecondaryEmail(),
-                graduate.getPassword(),
+                UserAuthenticatorServiceFacadeImpl.hashPassword(graduate.getPassword()),
                 graduate.getCellphone(),
-                graduate.getUserRole(),
+               "GRADUATE",
+                graduate.getMotorVehicleLicense(),
+                graduate.getCountry(),
                 graduate.getCv(),
                 graduate.getQualifications(),
                 graduate.getExperiences());
 
+        return this.repository.save(validatedGraduate);
+    }
+
+    public Graduate signup(Graduate graduate) throws IllegalArgumentException, UserExistsException
+    {
+        Graduate validatedGraduate = GraduateFactory.build(
+                graduate.getEmail(),
+                UserAuthenticatorServiceFacadeImpl.hashPassword(graduate.getPassword()),
+                "GRADUATE");
+        UserAuthenticatorServiceFacadeImpl.checkUserExists(findGraduateByEmail(graduate.getEmail()));
         return this.repository.save(validatedGraduate);
     }
 
@@ -73,7 +87,7 @@ public class GraduateServiceImpl implements IGraduateService, IUserAuthenticator
     }
 
     @Override
-    public Graduate login(Graduate user) throws NotRegisteredUserException, PasswordMismatchException
+    public UserSession login(Graduate user) throws NotRegisteredUserException, PasswordMismatchException
     {
         Optional<Graduate> registeredUser = findGraduateByEmail(user.getEmail());
         return UserAuthenticatorServiceFacadeImpl.validateUserCredentials(

@@ -29,6 +29,7 @@ public class DepartmentController {
     }
 
     @PostMapping("save")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Department> save(@Valid @RequestBody Department department)
     {
         log.info("Save request:{}", department);
@@ -43,6 +44,7 @@ public class DepartmentController {
     }
 
     @GetMapping("read/{departmentId}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Department> read(@PathVariable int departmentId) {
         log.info("Read request:{}", departmentId);
         Department readDept= this.departmentService.read(departmentId)
@@ -51,12 +53,14 @@ public class DepartmentController {
     }
 
     @DeleteMapping("delete")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> delete(Department department) {
         this.departmentService.delete(department);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("delete/{departmentId}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> delete(@PathVariable int departmentId) {
         log.info("delete request:{}",departmentId);
         this.departmentService.deleteById(departmentId);
@@ -64,6 +68,7 @@ public class DepartmentController {
     }
 
     @GetMapping("find-all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<Department>> findAll() {
         return ResponseEntity.ok(this.departmentService.findAll());
     }

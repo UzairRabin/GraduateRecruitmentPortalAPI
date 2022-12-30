@@ -27,6 +27,7 @@ public class GraduatePortalDocumentController {
     }
 
     @PostMapping("save")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<GraduatePortalDocument> save(@RequestParam MultipartFile document, Long userId)
     {
         GraduatePortalDocument file = null;
@@ -39,6 +40,7 @@ public class GraduatePortalDocumentController {
     }
 
     @GetMapping("read/{documentId}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<?> read(@PathVariable long documentId)
     {
         GraduatePortalDocument document = service.read(documentId)
@@ -49,12 +51,14 @@ public class GraduatePortalDocumentController {
     }
 
     @GetMapping("find-all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<?> findAll()
     {
         return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("find-all-documents")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<?> findAllDocuments()
     {
         return ResponseEntity.status(HttpStatus.FOUND)

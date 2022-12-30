@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.exception.NotRegisteredUserException;
 import za.ac.cput.exception.PasswordMismatchException;
 import za.ac.cput.factory.UserSessionFactory;
+import za.ac.cput.model.Graduate;
 import za.ac.cput.model.Recruiter;
 import za.ac.cput.model.UserSession;
 import za.ac.cput.service.IRecruiterService;
@@ -30,6 +31,7 @@ public class RecruiterController {
     RecruiterController(RecruiterServiceImpl service){this.service = service;}
 
     @PostMapping("save")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Recruiter> save(@RequestBody Recruiter recruiter){
         Recruiter recruiterReturned = null;
         try{
@@ -43,6 +45,7 @@ public class RecruiterController {
     }
 
     @GetMapping("read/{recruiterId}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Recruiter> read(@PathVariable long recruiterId) {
         log.info("Read request:{}", recruiterId);
         Recruiter read = this.service.read(recruiterId)
@@ -51,29 +54,29 @@ public class RecruiterController {
     }
 
     @GetMapping("find-all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<Recruiter>>findAll(){List<Recruiter> recruiter = this.service.findAll();
         return ResponseEntity.ok(recruiter);}
 
     @DeleteMapping("delete/{recruiterId}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> deleteById(@PathVariable long recruiterId) {service.deleteById(recruiterId);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("delete")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> delete(Recruiter recruiter) {this.service.delete(recruiter);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("login")
-    public ResponseEntity<UserSession> login(Recruiter recruiter)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<UserSession> login(@RequestBody Recruiter recruiter)
     {
-        Recruiter user = null;
         UserSession userSession = null;
         try{
-            user = service.login(recruiter);
-            userSession = UserSessionFactory.build(
-                    UserAuthenticatorServiceFacadeImpl.generateSessionToken(user),
-                    user.getUserId());
+            userSession = service.login(recruiter);
             return ResponseEntity.ok(userSession);
         }
         catch (NotRegisteredUserException | PasswordMismatchException exception)
@@ -82,6 +85,21 @@ public class RecruiterController {
                 throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, ((NotRegisteredUserException) exception).getMessage());
             else throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, exception.getLocalizedMessage());
         }
+    }
+
+    @PostMapping("signup")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Recruiter> signup(@RequestBody Recruiter recruiter)
+    {
+        Recruiter user = null;
+        try{
+            user = this.service.signup(recruiter);
+        }
+        catch(IllegalArgumentException exception)
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.ok(user);
     }
 }
 

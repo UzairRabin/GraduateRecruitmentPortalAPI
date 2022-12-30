@@ -1,6 +1,10 @@
 package za.ac.cput.service;
 
+import za.ac.cput.exception.NotRegisteredUserException;
+import za.ac.cput.exception.PasswordMismatchException;
+import za.ac.cput.exception.UserExistsException;
 import za.ac.cput.model.Graduate;
+import za.ac.cput.model.UserSession;
 
 import java.util.Optional;
 import java.util.Set;
@@ -14,5 +18,7 @@ public interface IGraduateService extends IService<Graduate, Long>
 {
     void deleteById(Long graduateId);
     Optional<Graduate> findGraduateByEmail(String email);
+    UserSession login(Graduate user) throws NotRegisteredUserException, PasswordMismatchException;
+    Graduate signup(Graduate graduate) throws IllegalArgumentException, UserExistsException;
 }
 

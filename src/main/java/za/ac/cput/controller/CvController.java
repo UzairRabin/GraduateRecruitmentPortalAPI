@@ -32,6 +32,7 @@ public class CvController {
     }
 
     @PostMapping("save")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Cv> save(@RequestParam MultipartFile cv, @RequestParam Long username)
     {
         log.info("Save CV request:{}", cv);
@@ -40,6 +41,7 @@ public class CvController {
     }
 
     @GetMapping("read/{cvId}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Cv> read(@PathVariable String cvId) {
         log.info("Read request:{}", cvId);
         Cv read = this.cvService.read(cvId)
@@ -48,12 +50,14 @@ public class CvController {
     }
 
     @DeleteMapping("delete")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> delete(Cv cv) {
         this.cvService.delete(cv);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<Cv>> findAll() {
         List<Cv> cv = this.cvService.findAll();
         return ResponseEntity.ok(cv);

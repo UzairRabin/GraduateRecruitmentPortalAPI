@@ -8,6 +8,7 @@ package za.ac.cput.controller;
  * Student number: 219181187
  */
 // Importing required classes
+import org.springframework.web.bind.annotation.CrossOrigin;
 import za.ac.cput.model.EmailDetails;
 import za.ac.cput.repository.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class EmailController {
 
     // Sending a simple Email
     @PostMapping("/sendMail")
-    public String
-    sendMail(@RequestBody EmailDetails details)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public String sendMail(@RequestBody EmailDetails details)
     {
         String status = emailService.sendSimpleMail(details);
 
@@ -34,6 +35,7 @@ public class EmailController {
 
     // Sending email with attachment
     @PostMapping("/sendMailWithAttachment")
+    @CrossOrigin(origins = "http://localhost:4200")
     public String sendMailWithAttachment(@RequestBody EmailDetails details)
     {
         String status = emailService.sendMailWithAttachment(details);

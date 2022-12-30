@@ -3,15 +3,19 @@ package za.ac.cput.serviceFacade;
 import io.jsonwebtoken.Jwts;
 import za.ac.cput.exception.NotRegisteredUserException;
 import za.ac.cput.exception.PasswordMismatchException;
+import za.ac.cput.exception.UserExistsException;
 import za.ac.cput.factory.GraduateFactory;
 import za.ac.cput.factory.RecruiterFactory;
+import za.ac.cput.factory.UserSessionFactory;
 import za.ac.cput.model.Graduate;
 import za.ac.cput.model.Recruiter;
+import za.ac.cput.model.UserSession;
 import za.ac.cput.security.Security;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.Optional;
 
 
 /**
@@ -25,21 +29,12 @@ public class UserAuthenticatorServiceFacadeImpl {
      * @param existingUser
      * @param userToValidate
      * */
-    public static Recruiter validateUserCredentials(Boolean doesUserExist, Recruiter userToValidate, Recruiter existingUser) throws NotRegisteredUserException, PasswordMismatchException
+    public static UserSession validateUserCredentials(Boolean doesUserExist, Recruiter userToValidate, Recruiter existingUser) throws NotRegisteredUserException, PasswordMismatchException
     {
         if(!doesUserExist) return null;
         authenticateUsername(userToValidate.getEmail(), existingUser.getEmail());
         authenticateUserPassword(userToValidate.getPassword(), existingUser.getPassword());
-
-        return RecruiterFactory.build(existingUser.getFirstName(),
-                                      existingUser.getSurname(),
-                                      existingUser.getCompanyName(),
-                                      existingUser.getEmail(),
-                                      existingUser.getCellphone(),
-                                      existingUser.getPassword(),
-                                      existingUser.getVacancies(),
-                                      existingUser.getUserRole(),
-                                      existingUser.getDateAdded());
+        return UserSessionFactory.build(generateSessionToken(existingUser), existingUser.getUserId());
     }
 
     /**
@@ -47,23 +42,18 @@ public class UserAuthenticatorServiceFacadeImpl {
      * @param existingUser
      * @param userToValidate
      * */
-    public static Graduate validateUserCredentials(Boolean doesUserExist, Graduate userToValidate, Graduate existingUser) throws NotRegisteredUserException, PasswordMismatchException
+    public static UserSession validateUserCredentials(Boolean doesUserExist, Graduate userToValidate, Graduate existingUser) throws NotRegisteredUserException, PasswordMismatchException
     {
         if(!doesUserExist) return null;
         authenticateUsername(userToValidate.getEmail(), existingUser.getEmail());
         authenticateUserPassword(userToValidate.getPassword(), existingUser.getPassword());
+        return UserSessionFactory.build(generateSessionToken(existingUser), existingUser.getUserId());
+    }
 
-        return GraduateFactory.build(existingUser.getFirstName(),
-                                     existingUser.getPreferredName(),
-                                     existingUser.getSurname(),
-                                     existingUser.getEmail(),
-                                     existingUser.getSecondaryEmail(),
-                                     existingUser.getPassword(),
-                                     existingUser.getCellphone(),
-                                     existingUser.getUserRole(),
-                                     existingUser.getCv(),
-                                     existingUser.getQualifications(),
-                                     existingUser.getExperiences());
+    public static void checkUserExists(Optional<Graduate> graduate) throws UserExistsException
+    {
+        if(graduate.isPresent())
+            throw new UserExistsException();
     }
 
     public static String generateSessionToken(Recruiter recruiter)
@@ -90,9 +80,14 @@ public class UserAuthenticatorServiceFacadeImpl {
                 .compact();
     }
 
-    private static void authenticateUserPassword(String userToValidate, String existingUser) throws PasswordMismatchException
+    public static String hashPassword(String password)
     {
-        if(!hashPassword(userToValidate).equals(existingUser))
+        return Security.bCryptPasswordEncoder().encode(password);
+    }
+
+    private static void authenticateUserPassword(String userPasswordToValidate, String existingUserPassword) throws PasswordMismatchException
+    {
+        if(!Security.bCryptPasswordEncoder().matches(userPasswordToValidate, existingUserPassword))
             throw new PasswordMismatchException();
     }
 
@@ -100,10 +95,5 @@ public class UserAuthenticatorServiceFacadeImpl {
     {
         if(!userToValidate.equalsIgnoreCase(existingUser))
             throw new NotRegisteredUserException();
-    }
-
-    private static String hashPassword(String password)
-    {
-        return Security.bCryptPasswordEncoder().encode(password);
     }
 }

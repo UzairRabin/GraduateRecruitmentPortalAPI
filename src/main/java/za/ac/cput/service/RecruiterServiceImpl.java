@@ -8,6 +8,7 @@ import za.ac.cput.exception.PasswordMismatchException;
 import za.ac.cput.factory.RecruiterFactory;
 import za.ac.cput.model.Graduate;
 import za.ac.cput.model.Recruiter;
+import za.ac.cput.model.UserSession;
 import za.ac.cput.repository.IRecruiterRepository;
 import za.ac.cput.serviceFacade.UserAuthenticatorServiceFacadeImpl;
 
@@ -39,7 +40,7 @@ public class RecruiterServiceImpl implements IRecruiterService, IUserAuthenticat
                                                object.getCompanyName(),
                                                object.getEmail(),
                                                object.getCellphone(),
-                                               object.getPassword(),
+                                               UserAuthenticatorServiceFacadeImpl.hashPassword(object.getPassword()),
                                                object.getVacancies(),
                                                object.getUserRole(),
                                                object.getDateAdded());
@@ -78,12 +79,22 @@ public class RecruiterServiceImpl implements IRecruiterService, IUserAuthenticat
     }
 
     @Override
-    public Recruiter login(Recruiter user) throws NotRegisteredUserException, PasswordMismatchException
+    public UserSession login(Recruiter user) throws NotRegisteredUserException, PasswordMismatchException
     {
         Optional<Recruiter> registeredUser = findRecruiterByEmail(user.getEmail());
         //Recruiter validatedUser
         return UserAuthenticatorServiceFacadeImpl.validateUserCredentials(
                 registeredUser.isPresent(),
                 user, registeredUser.get());
+    }
+
+    @Override
+    public Recruiter signup(Recruiter recruiter)
+    {
+        safeRecruiter = RecruiterFactory.build(
+                recruiter.getEmail(),
+                UserAuthenticatorServiceFacadeImpl.hashPassword(recruiter.getPassword()),
+                "RECRUITER");
+        return this.recruiterRepository.save(safeRecruiter);
     }
 }

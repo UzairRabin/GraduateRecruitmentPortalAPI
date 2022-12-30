@@ -23,11 +23,13 @@ import java.util.Set;
 @Entity
 public class Graduate extends User implements Serializable {
 
-    @NotNull
     private String preferredName;
 
-    @NotNull
     private String secondaryEmail;
+
+    private String motorVehicleLicense;
+
+    private String country;
 
     @JoinColumn(name = "cvId")
     @OneToOne

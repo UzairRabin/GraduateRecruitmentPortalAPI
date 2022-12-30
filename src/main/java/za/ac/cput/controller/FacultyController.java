@@ -27,6 +27,7 @@ public class FacultyController {
     }
 
     @PostMapping("save")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Faculty> save(@RequestBody Faculty faculty)
     {
         Faculty facultyReturned = null;
@@ -41,6 +42,7 @@ public class FacultyController {
     }
 
     @GetMapping("read/{facultyId}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Faculty> read(@PathVariable long facultyId)
     {
         Faculty facultyReturned = service.read(facultyId)
@@ -49,12 +51,14 @@ public class FacultyController {
     }
 
     @GetMapping("find-all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<Faculty>> findAll()
     {
         return ResponseEntity.ok(service.findAll());
     }
 
     @DeleteMapping("delete/{facultyId}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> deleteById(@PathVariable long facultyId)
     {
         service.deleteById(facultyId);
@@ -62,6 +66,7 @@ public class FacultyController {
     }
 
     @DeleteMapping("delete")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> delete(@RequestBody Faculty faculty)
     {
         service.delete(faculty);

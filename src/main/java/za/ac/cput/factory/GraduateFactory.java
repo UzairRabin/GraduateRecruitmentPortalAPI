@@ -19,7 +19,7 @@ import java.util.Set;
 
 public class GraduateFactory {
 
-    public static Graduate build(String firstName, String preferredName, String surname, String primaryEmail, String secondaryEmail, String password, String cellphone, String userRole, Cv cv, Set<Qualification> qualification, Set<Experience> experience) throws IllegalArgumentException
+    public static Graduate build(String firstName, String preferredName, String surname, String primaryEmail, String secondaryEmail, String password, String cellphone, String userRole, String motorVehicleLicense, String country, Cv cv, Set<Qualification> qualification, Set<Experience> experience) throws IllegalArgumentException
     {
         Utility.checkStringParam("firstName", firstName);
         Utility.checkStringParam("preferredName", preferredName);
@@ -28,6 +28,7 @@ public class GraduateFactory {
         Utility.checkStringParam("secondaryEmail", secondaryEmail);
         Utility.checkStringParam("password", password);
         Utility.checkStringParam("cellphone", cellphone);
+        Utility.checkStringParam("country", country);
         Utility.checkStringParam("userRole", userRole);
 
         return Graduate.builder()
@@ -38,10 +39,27 @@ public class GraduateFactory {
                 .secondaryEmail(secondaryEmail)
                 .password(password)
                 .cellphone(cellphone)
+                .motorVehicleLicense(motorVehicleLicense)
+                .country(country)
                 .userRole(userRole)
                 .cv(cv)
                 .qualifications(qualification)
                 .experiences(experience).build();
 
+    }
+
+    /**
+     * This method is intended for use only when a user is built upon
+     * registration or singing up.
+     * @param primaryEmail
+     * @param password
+     * */
+    public static Graduate build(String primaryEmail, String password, String userRole) throws IllegalArgumentException
+    {
+        Utility.checkStringParam("primaryEmail", primaryEmail);
+        Utility.checkStringParam("password", password);
+
+        return Graduate.builder().email(primaryEmail).password(password)
+                .userRole(userRole).build();
     }
 }

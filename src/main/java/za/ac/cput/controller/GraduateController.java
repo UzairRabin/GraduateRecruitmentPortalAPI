@@ -5,9 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import za.ac.cput.exception.NotRegisteredUserException;
+import za.ac.cput.exception.PasswordMismatchException;
+import za.ac.cput.exception.UserExistsException;
+import za.ac.cput.factory.UserSessionFactory;
 import za.ac.cput.model.Graduate;
+import za.ac.cput.model.Recruiter;
+import za.ac.cput.model.UserSession;
 import za.ac.cput.model.Vacancy;
 import za.ac.cput.service.GraduateServiceImpl;
+import za.ac.cput.serviceFacade.UserAuthenticatorServiceFacadeImpl;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -32,14 +39,23 @@ public class GraduateController {
     }
 
     @PostMapping("save")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Graduate> save(@RequestBody Graduate graduate)
     {
-        log.info("Save Request: {}", graduate);
-        Graduate save = this.graduateServiceImpl.save(graduate);
+        Graduate save = null;
+
+        try{
+            save = this.graduateServiceImpl.save(graduate);
+        }
+        catch(IllegalArgumentException exception)
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
         return ResponseEntity.ok(save);
     }
 
     @GetMapping("read/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Graduate> read(@PathVariable Long id)
     {
         log.info("Read Request: {}", id);
@@ -49,6 +65,7 @@ public class GraduateController {
     }
 
     @DeleteMapping("delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Graduate> delete(@PathVariable Long id)
     {
         log.info("Delete Request: {}", id);
@@ -57,9 +74,43 @@ public class GraduateController {
     }
 
     @GetMapping("find-all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<Graduate>> findAll()
     {
         return ResponseEntity.ok(this.graduateServiceImpl.findAll());
     }
-}
 
+    @PostMapping("login")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<UserSession> login(@RequestBody Graduate graduate)
+    {
+        UserSession userSession = null;
+        try{
+            userSession = graduateServiceImpl.login(graduate);
+            return ResponseEntity.ok(userSession);
+        }
+        catch (NotRegisteredUserException | PasswordMismatchException exception)
+        {
+            if(exception instanceof NotRegisteredUserException)
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, ((NotRegisteredUserException) exception).getMessage());
+            else throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, exception.getLocalizedMessage());
+        }
+    }
+
+    @PostMapping("signup")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Graduate> signup(@RequestBody Graduate graduate)
+    {
+        Graduate user = null;
+        try{
+            user = this.graduateServiceImpl.signup(graduate);
+        }
+        catch(IllegalArgumentException | UserExistsException exception)
+        {
+            if(exception instanceof UserExistsException)
+                throw new ResponseStatusException(HttpStatus.OK, ((UserExistsException) exception).getLocalizedMessage());
+            else throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.ok(user);
+    }
+}

@@ -24,6 +24,7 @@ public class ExperienceController {
     }
 
     @PostMapping("save")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Experience> save(@Valid @RequestBody Experience experience) {
         Experience experienceSaved = null;
         try
@@ -37,6 +38,7 @@ public class ExperienceController {
     }
 
     @GetMapping("read/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Experience> read(@PathVariable Long id) {
         Experience readExperience= this.experienceService.read(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Experience not found"));
@@ -44,18 +46,21 @@ public class ExperienceController {
     }
 
     @DeleteMapping("delete")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> delete(Experience experience) {
         this.experienceService.delete(experience);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         this.experienceService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("find-all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<Experience>> findAll() {
         List<Experience> findAllTeamList = this.experienceService.findAll();
         return ResponseEntity.ok(findAllTeamList);
