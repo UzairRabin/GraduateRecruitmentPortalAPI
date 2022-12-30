@@ -35,8 +35,8 @@ jobs:
           ## the following creates an ARN based on the values entered into github secrets
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCESS_KEY_ID }}
 #        with:
-#          aws-access-key-id: ASIA3UWQ6PC3WWYYNQNX
-#          aws-secret-access-key: l5JSqIepPWBg8enEcQqKRlDgcDHfz7GHG3JuZOot
+           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 #          aws-region: us-east-1
 
       # Login to Amazon ECR
