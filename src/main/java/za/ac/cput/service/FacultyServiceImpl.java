@@ -31,14 +31,15 @@ public class FacultyServiceImpl implements IFacultyService{
     @Override
     public Faculty save(Faculty object) throws IllegalArgumentException
     {
-        safeFaculty = FacultyFactory.build(object.getFacultyName(),
+        safeFaculty = FacultyFactory.build(object.getFacultyId(),
+                                           object.getFacultyName(),
                                            object.getFacultyDescription());
 
         return this.facultyRepository.save(object);
     }
 
     @Override
-    public Optional<Faculty> read(Long facultyId)
+    public Optional<Faculty> read(String facultyId)
     {
         return this.facultyRepository.findById(facultyId);
     }
@@ -56,7 +57,7 @@ public class FacultyServiceImpl implements IFacultyService{
     }
 
     @Override
-    public void deleteById(Long facultyId)
+    public void deleteById(String facultyId)
     {
         this.facultyRepository.deleteById(facultyId);
     }

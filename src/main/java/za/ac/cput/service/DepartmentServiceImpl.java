@@ -26,13 +26,14 @@ public class DepartmentServiceImpl implements IDepartmentService{
     @Override
     public Department save(Department object) throws IllegalArgumentException
     {
-        Department department = DepartmentFactory.build(object.getDepartmentName(),
+        Department department = DepartmentFactory.build(object.getDepartmentId(),
+                                                        object.getDepartmentName(),
                                                         object.getFaculty());
         return this.repository.save(department);
     }
 
     @Override
-    public Optional<Department> read(Integer integer) {
+    public Optional<Department> read(String integer) {
         return this.repository.findById(integer);
     }
 
@@ -53,7 +54,7 @@ public class DepartmentServiceImpl implements IDepartmentService{
     }
 
     @Override
-    public void deleteById(int departmentId) {
+    public void deleteById(String departmentId) {
 
     }
 }

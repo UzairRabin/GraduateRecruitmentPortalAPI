@@ -41,7 +41,7 @@ public class VacancyController {
     }
 
     @GetMapping("read/{vacancyId}")
-    public ResponseEntity<Vacancy> read(@PathVariable long vacancyId)
+    public ResponseEntity<Vacancy> read(@PathVariable String vacancyId)
     {
         Vacancy vacancyReturned = service.read(vacancyId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -55,7 +55,7 @@ public class VacancyController {
     }
 
     @DeleteMapping("delete/{vacancyId}")
-    public ResponseEntity<Void> deleteById(@PathVariable long vacancyId)
+    public ResponseEntity<Void> deleteById(@PathVariable String vacancyId)
     {
         service.deleteById(vacancyId);
         return ResponseEntity.noContent().build();

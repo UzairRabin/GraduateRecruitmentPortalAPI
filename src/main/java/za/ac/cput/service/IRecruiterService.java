@@ -8,8 +8,8 @@ import java.util.Optional;
  * @author Mbuso Kotobe
  *
  * */
-public interface IRecruiterService extends IService<Recruiter, Long> {
+public interface IRecruiterService extends IService<Recruiter, String> {
     Optional<Recruiter> findRecruiterByEmail(String email);
-    void deleteById(Long recruiterId);
+    void deleteById(String recruiterId);
     Recruiter signup(Recruiter recruiter);
 }

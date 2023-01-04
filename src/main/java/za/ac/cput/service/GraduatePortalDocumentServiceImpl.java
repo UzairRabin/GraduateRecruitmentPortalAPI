@@ -40,7 +40,7 @@ public class GraduatePortalDocumentServiceImpl implements IGraduatePortalDocumen
     public GraduatePortalDocument save(GraduatePortalDocument object)
     { throw new UnsupportedOperationException(); }
 
-    public GraduatePortalDocument save(MultipartFile file, Long userId) throws IllegalStateException
+    public GraduatePortalDocument save(MultipartFile file, String userId) throws IllegalStateException
     {
         try {
             String userDocumentDirectory = GraduateRecruitmentPortalAPI
@@ -63,7 +63,7 @@ public class GraduatePortalDocumentServiceImpl implements IGraduatePortalDocumen
     }
 
     @Override
-    public Optional<GraduatePortalDocument> read(Long documentId)
+    public Optional<GraduatePortalDocument> read(String documentId)
     {
         try{
             GraduatePortalDocument localInstance = this.repository.findById(documentId).get();

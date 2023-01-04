@@ -15,8 +15,7 @@ import javax.persistence.*;
 @Entity
 public class Vacancy {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long vacancyId;
+    private String vacancyId;
     private String vacancyTitle;
     private String jobType;
     private String jobRole;

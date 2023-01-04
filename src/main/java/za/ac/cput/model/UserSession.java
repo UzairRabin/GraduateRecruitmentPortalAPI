@@ -12,5 +12,5 @@ import lombok.*;
 @Builder
 public class UserSession {
     String sessionToken;
-    Long userId;
+    String userId;
 }

@@ -7,16 +7,18 @@ import za.ac.cput.utility.Utility;
 import java.time.LocalDate;
 
 public class GraduatePortalDocumentFactory {
-    public static GraduatePortalDocument build(String documentName,
+    public static GraduatePortalDocument build(String documentId, String documentName,
                                                String documentType, String documentLocation,
                                                byte[] documentData, LocalDate dateAdded)
     {
+        Utility.checkStringParam("documentId", documentId);
         Utility.checkStringParam("documentName", documentName);
         Utility.checkStringParam("documentLocation", documentLocation);
         Utility.checkStringParam("documentType", documentType);
         Utility.checkStringParam("dateAdded", String.valueOf(dateAdded));
 
-        return GraduatePortalDocument.builder().documentName(documentName)
+        return GraduatePortalDocument.builder().documentId(documentId)
+                .documentName(documentName)
                 .documentLocation(documentLocation)
                 .documentType(documentType)
                 .documentData(documentData)

@@ -7,5 +7,5 @@ import za.ac.cput.model.Experience;
 import java.util.Optional;
 
 @Repository
-public interface IExperienceRepository extends JpaRepository<Experience, Long> {
+public interface IExperienceRepository extends JpaRepository<Experience, String> {
 }

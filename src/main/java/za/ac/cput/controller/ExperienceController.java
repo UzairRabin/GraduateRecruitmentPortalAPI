@@ -39,7 +39,7 @@ public class ExperienceController {
 
     @GetMapping("read/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Experience> read(@PathVariable Long id) {
+    public ResponseEntity<Experience> read(@PathVariable String id) {
         Experience readExperience= this.experienceService.read(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Experience not found"));
         return ResponseEntity.ok(readExperience);
@@ -54,7 +54,7 @@ public class ExperienceController {
 
     @DeleteMapping("delete/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
         this.experienceService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

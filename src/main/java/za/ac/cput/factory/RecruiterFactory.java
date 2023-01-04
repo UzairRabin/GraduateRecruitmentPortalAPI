@@ -14,15 +14,17 @@ import java.util.Set;
 public class RecruiterFactory {
 
 
-    public static Recruiter build(String recruiterName, String surname, String companyName,
+    public static Recruiter build(String userId, String recruiterName, String surname, String companyName,
                                   String email, String contactNumber, String password,
                                   Set<Vacancy> vacancies, String userRole, LocalDate dateAdded)
     {
+        Utility.checkStringParam("userId", userId);
         Utility.checkStringParam("email", email);
         Utility.checkStringParam("password", password);
         Utility.checkStringParam("userRole", userRole);
 
-        return Recruiter.builder().firstName(recruiterName).surname(surname)
+        return Recruiter.builder().userId(userId)
+                                  .firstName(recruiterName).surname(surname)
                                   .email(email).companyName(companyName)
                                   .password(password).cellphone(contactNumber)
                                   .userRole("RECRUITER").vacancies(vacancies)
@@ -36,12 +38,13 @@ public class RecruiterFactory {
      * @param email
      * @param password
      * */
-    public static Recruiter build(String email, String password, String userRole) throws IllegalArgumentException
+    public static Recruiter build(String userId, String email, String password, String userRole) throws IllegalArgumentException
     {
+        Utility.checkStringParam("userId", userId);
         Utility.checkStringParam("email", email);
         Utility.checkStringParam("password", password);
 
-        return Recruiter.builder().email(email).password(password)
+        return Recruiter.builder().userId(userId).email(email).password(password)
                 .userRole(userRole).build();
     }
 }

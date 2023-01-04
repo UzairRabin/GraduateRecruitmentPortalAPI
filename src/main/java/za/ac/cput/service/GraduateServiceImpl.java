@@ -11,6 +11,7 @@ import za.ac.cput.model.Graduate;
 import za.ac.cput.model.UserSession;
 import za.ac.cput.repository.IGraduateRepository;
 import za.ac.cput.serviceFacade.UserAuthenticatorServiceFacadeImpl;
+import za.ac.cput.utility.Utility;
 
 
 import java.util.List;
@@ -33,7 +34,8 @@ public class GraduateServiceImpl implements IGraduateService, IUserAuthenticator
 
     public Graduate save(Graduate graduate) throws IllegalArgumentException
     {
-       Graduate validatedGraduate = GraduateFactory.build(graduate.getFirstName(),
+       Graduate validatedGraduate = GraduateFactory.build(Utility.generateId(),
+                graduate.getFirstName(),
                 graduate.getPreferredName(),
                 graduate.getSurname(),
                 graduate.getEmail(),
@@ -53,6 +55,7 @@ public class GraduateServiceImpl implements IGraduateService, IUserAuthenticator
     public Graduate signup(Graduate graduate) throws IllegalArgumentException, UserExistsException
     {
         Graduate validatedGraduate = GraduateFactory.build(
+                graduate.getUserId(),
                 graduate.getEmail(),
                 UserAuthenticatorServiceFacadeImpl.hashPassword(graduate.getPassword()),
                 "GRADUATE");
@@ -61,7 +64,7 @@ public class GraduateServiceImpl implements IGraduateService, IUserAuthenticator
     }
 
 
-    public Optional<Graduate> read(Long graduateId)
+    public Optional<Graduate> read(String graduateId)
     {
         return this.repository.findById(graduateId);
     }
@@ -71,7 +74,7 @@ public class GraduateServiceImpl implements IGraduateService, IUserAuthenticator
         return this.repository.findByEmail(email);
     }
 
-    public void deleteById(Long graduateId)
+    public void deleteById(String graduateId)
     {
         this.repository.deleteById(graduateId);
     }

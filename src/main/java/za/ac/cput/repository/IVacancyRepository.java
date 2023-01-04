@@ -6,5 +6,5 @@ import za.ac.cput.model.Vacancy;
 /**
  * @author Mbuso Kotobe
  * */
-public interface IVacancyRepository extends JpaRepository<Vacancy, Long> {
+public interface IVacancyRepository extends JpaRepository<Vacancy, String> {
 }

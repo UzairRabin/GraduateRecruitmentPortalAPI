@@ -14,6 +14,6 @@ import java.util.Optional;
  */
 
 @Repository
-public interface IGraduateRepository extends JpaRepository<Graduate, Long> {
+public interface IGraduateRepository extends JpaRepository<Graduate, String> {
     Optional<Graduate> findByEmail(String email);
 }

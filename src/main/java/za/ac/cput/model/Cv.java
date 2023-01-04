@@ -24,8 +24,7 @@ import java.util.Objects;
 @Entity
 public class Cv implements Serializable {
     @Id
-    @GeneratedValue
-    @NotNull private int cvId;
+    @NotNull private String cvId;
     @NotNull private String documentName;
     @NotNull private String documentLocation;
     @NotNull private boolean isAcknowledged;

@@ -28,7 +28,7 @@ public class GraduatePortalDocumentController {
 
     @PostMapping("save")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<GraduatePortalDocument> save(@RequestParam MultipartFile document, Long userId)
+    public ResponseEntity<GraduatePortalDocument> save(@RequestParam MultipartFile document, String userId)
     {
         GraduatePortalDocument file = null;
         try { file = service.save(document, userId); }
@@ -41,7 +41,7 @@ public class GraduatePortalDocumentController {
 
     @GetMapping("read/{documentId}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<?> read(@PathVariable long documentId)
+    public ResponseEntity<?> read(@PathVariable String documentId)
     {
         GraduatePortalDocument document = service.read(documentId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -67,7 +67,7 @@ public class GraduatePortalDocumentController {
     }
 
     //@DeleteMapping("delete/{vacancyId}")
-    public ResponseEntity<Void> deleteById(@PathVariable long documentId)
+    public ResponseEntity<Void> deleteById(@PathVariable String documentId)
     {
         throw new UnsupportedOperationException();
     }

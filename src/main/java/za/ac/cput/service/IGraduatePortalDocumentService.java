@@ -6,8 +6,8 @@ import za.ac.cput.repository.IGraduatePortalDocumentRepository;
 
 import java.util.List;
 
-public interface IGraduatePortalDocumentService extends IService<GraduatePortalDocument, Long>
+public interface IGraduatePortalDocumentService extends IService<GraduatePortalDocument, String>
 {
-    GraduatePortalDocument save(MultipartFile document, Long userId);
+    GraduatePortalDocument save(MultipartFile document, String userId);
     List<byte[]> findAllDocuments();
 }

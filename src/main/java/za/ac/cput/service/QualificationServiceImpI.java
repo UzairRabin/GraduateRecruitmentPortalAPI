@@ -25,6 +25,7 @@ public class QualificationServiceImpI implements IQualificationService{
     public Qualification save(Qualification object)
     {
         validatedQualification = QualificationFactory.build(
+                object.getQualificationId(),
                 object.getQualificationName(),
                 object.getQualificationDescription(),
                 object.getGraduate());
@@ -33,7 +34,7 @@ public class QualificationServiceImpI implements IQualificationService{
     }
 
     @Override
-    public Optional<Qualification> read(Long s)
+    public Optional<Qualification> read(String s)
     {
         return this.repository.findById(s);
     }

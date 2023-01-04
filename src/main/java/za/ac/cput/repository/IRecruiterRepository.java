@@ -8,6 +8,6 @@ import java.util.Optional;
 /**
  * @author Mbuso Kotobe
  * */
-public interface IRecruiterRepository extends JpaRepository<Recruiter, Long> {
+public interface IRecruiterRepository extends JpaRepository<Recruiter, String> {
     Optional<Recruiter> findByEmail(String email);
 }

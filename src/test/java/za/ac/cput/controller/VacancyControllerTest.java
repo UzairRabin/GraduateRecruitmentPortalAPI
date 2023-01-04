@@ -11,6 +11,7 @@ import za.ac.cput.factory.RecruiterFactory;
 import za.ac.cput.factory.VacancyFactory;
 import za.ac.cput.model.Recruiter;
 import za.ac.cput.model.Vacancy;
+import za.ac.cput.utility.Utility;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -35,8 +36,8 @@ public class VacancyControllerTest {
     @BeforeEach
     void setUp()
     {
-        Recruiter recruiter = RecruiterFactory.build("John", "Smith", "Golden Minds", "john.smith@goldenminds.co.za" ,"021 541 3254", "12345", new HashSet<>(), "RECRUITER", LocalDate.now());
-        vacancy = VacancyFactory.build(2L,"Full Stack Engineer", "Hybrid", "Graduate", false, "Johannesburg", recruiter);
+        Recruiter recruiter = RecruiterFactory.build(Utility.generateId(), "John", "Smith", "Golden Minds", "john.smith@goldenminds.co.za" ,"021 541 3254", "12345", new HashSet<>(), "RECRUITER", LocalDate.now());
+        vacancy = VacancyFactory.build(Utility.generateId(), "Full Stack Engineer", "Hybrid", "Graduate", false, "Johannesburg", recruiter);
         baseUrl = "http://localhost:" + portNumber + "/" + "api/v1/graduate-recruitment-portal-api/vacancy/";
     }
 

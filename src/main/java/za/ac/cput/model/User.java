@@ -21,8 +21,7 @@ import java.io.Serializable;
 @SuperBuilder(toBuilder = true)
 public abstract class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long userId;
+    protected String userId;
     protected String firstName;
     protected String surname;
     protected String email;

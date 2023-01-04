@@ -56,7 +56,7 @@ public class GraduateController {
 
     @GetMapping("read/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Graduate> read(@PathVariable Long id)
+    public ResponseEntity<Graduate> read(@PathVariable String id)
     {
         log.info("Read Request: {}", id);
         Graduate graduate = graduateServiceImpl.read(id)
@@ -66,7 +66,7 @@ public class GraduateController {
 
     @DeleteMapping("delete/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Graduate> delete(@PathVariable Long id)
+    public ResponseEntity<Graduate> delete(@PathVariable String id)
     {
         log.info("Delete Request: {}", id);
         this.graduateServiceImpl.deleteById(id);

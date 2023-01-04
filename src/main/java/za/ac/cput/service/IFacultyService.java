@@ -6,6 +6,6 @@ import za.ac.cput.model.Faculty;
  * @author Mbuso Kotobe
  *
  * */
-public interface IFacultyService extends IService<Faculty, Long>{
-    void deleteById(Long facultyId);
+public interface IFacultyService extends IService<Faculty, String>{
+    void deleteById(String facultyId);
 }

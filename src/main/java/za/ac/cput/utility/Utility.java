@@ -2,6 +2,8 @@ package za.ac.cput.utility;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.UUID;
+
 /**
  * @author Mbuso Kotobe
  *
@@ -12,6 +14,10 @@ import org.apache.commons.lang3.StringUtils;
  * Please keep all class member methods static.
  * */
 public class Utility {
+
+    public static String generateId(){
+        return UUID.randomUUID().toString();
+    }
 
     public static void checkStringParam(String paramName, String paramValue) throws IllegalArgumentException
     {

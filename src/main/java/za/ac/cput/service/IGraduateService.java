@@ -14,9 +14,9 @@ import java.util.Set;
  * Student number: 219181187
  * Date: 24 November 2022
  */
-public interface IGraduateService extends IService<Graduate, Long>
+public interface IGraduateService extends IService<Graduate, String>
 {
-    void deleteById(Long graduateId);
+    void deleteById(String graduateId);
     Optional<Graduate> findGraduateByEmail(String email);
     UserSession login(Graduate user) throws NotRegisteredUserException, PasswordMismatchException;
     Graduate signup(Graduate graduate) throws IllegalArgumentException, UserExistsException;

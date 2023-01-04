@@ -19,8 +19,9 @@ import java.util.Set;
 
 public class GraduateFactory {
 
-    public static Graduate build(String firstName, String preferredName, String surname, String primaryEmail, String secondaryEmail, String password, String cellphone, String userRole, String motorVehicleLicense, String country, Cv cv, Set<Qualification> qualification, Set<Experience> experience) throws IllegalArgumentException
+    public static Graduate build(String userId, String firstName, String preferredName, String surname, String primaryEmail, String secondaryEmail, String password, String cellphone, String userRole, String motorVehicleLicense, String country, Cv cv, Set<Qualification> qualification, Set<Experience> experience) throws IllegalArgumentException
     {
+        Utility.checkStringParam("userId", userId);
         Utility.checkStringParam("firstName", firstName);
         Utility.checkStringParam("preferredName", preferredName);
         Utility.checkStringParam("surname", surname);
@@ -32,6 +33,7 @@ public class GraduateFactory {
         Utility.checkStringParam("userRole", userRole);
 
         return Graduate.builder()
+                .userId(userId)
                 .firstName(firstName)
                 .preferredName(preferredName)
                 .surname(surname)
@@ -45,7 +47,6 @@ public class GraduateFactory {
                 .cv(cv)
                 .qualifications(qualification)
                 .experiences(experience).build();
-
     }
 
     /**
@@ -54,12 +55,14 @@ public class GraduateFactory {
      * @param primaryEmail
      * @param password
      * */
-    public static Graduate build(String primaryEmail, String password, String userRole) throws IllegalArgumentException
+    public static Graduate build(String userId, String primaryEmail, String password, String userRole) throws IllegalArgumentException
     {
+        Utility.checkStringParam("userId", userId);
         Utility.checkStringParam("primaryEmail", primaryEmail);
         Utility.checkStringParam("password", password);
 
-        return Graduate.builder().email(primaryEmail).password(password)
+        return Graduate.builder().userId(userId)
+                .email(primaryEmail).password(password)
                 .userRole(userRole).build();
     }
 }

@@ -33,7 +33,7 @@ public class CvController {
 
     @PostMapping("save")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Cv> save(@RequestParam MultipartFile cv, @RequestParam Long username)
+    public ResponseEntity<Cv> save(@RequestParam MultipartFile cv, @RequestParam String username)
     {
         log.info("Save CV request:{}", cv);
         Cv requestResult = this.cvService.save(cv, username);

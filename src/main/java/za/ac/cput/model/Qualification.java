@@ -14,8 +14,7 @@ import java.util.Objects;
 @Entity
 public class Qualification implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long qualificationId;
+    private String qualificationId;
     private String qualificationName;
     private String qualificationDescription;
     @ManyToOne

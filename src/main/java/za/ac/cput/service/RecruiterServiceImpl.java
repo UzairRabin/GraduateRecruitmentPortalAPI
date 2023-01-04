@@ -11,6 +11,7 @@ import za.ac.cput.model.Recruiter;
 import za.ac.cput.model.UserSession;
 import za.ac.cput.repository.IRecruiterRepository;
 import za.ac.cput.serviceFacade.UserAuthenticatorServiceFacadeImpl;
+import za.ac.cput.utility.Utility;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,8 @@ public class RecruiterServiceImpl implements IRecruiterService, IUserAuthenticat
     @Override
     public Recruiter save(Recruiter object) throws IllegalArgumentException
     {
-        safeRecruiter = RecruiterFactory.build(object.getFirstName(),
+        safeRecruiter = RecruiterFactory.build(object.getUserId(),
+                                               object.getFirstName(),
                                                object.getSurname(),
                                                object.getCompanyName(),
                                                object.getEmail(),
@@ -48,7 +50,7 @@ public class RecruiterServiceImpl implements IRecruiterService, IUserAuthenticat
     }
 
     @Override
-    public Optional<Recruiter> read(Long integer)
+    public Optional<Recruiter> read(String integer)
     {
         return recruiterRepository.findById(integer);
     }
@@ -73,7 +75,7 @@ public class RecruiterServiceImpl implements IRecruiterService, IUserAuthenticat
     }
 
     @Override
-    public void deleteById(Long recruiterId)
+    public void deleteById(String recruiterId)
     {
         recruiterRepository.deleteById(recruiterId);
     }
@@ -92,6 +94,7 @@ public class RecruiterServiceImpl implements IRecruiterService, IUserAuthenticat
     public Recruiter signup(Recruiter recruiter)
     {
         safeRecruiter = RecruiterFactory.build(
+                Utility.generateId(),
                 recruiter.getEmail(),
                 UserAuthenticatorServiceFacadeImpl.hashPassword(recruiter.getPassword()),
                 "RECRUITER");

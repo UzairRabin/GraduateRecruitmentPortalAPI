@@ -46,7 +46,7 @@ public class RecruiterController {
 
     @GetMapping("read/{recruiterId}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Recruiter> read(@PathVariable long recruiterId) {
+    public ResponseEntity<Recruiter> read(@PathVariable String recruiterId) {
         log.info("Read request:{}", recruiterId);
         Recruiter read = this.service.read(recruiterId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Recruiter not found"));
@@ -60,7 +60,7 @@ public class RecruiterController {
 
     @DeleteMapping("delete/{recruiterId}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Void> deleteById(@PathVariable long recruiterId) {service.deleteById(recruiterId);
+    public ResponseEntity<Void> deleteById(@PathVariable String recruiterId) {service.deleteById(recruiterId);
         return ResponseEntity.noContent().build();
     }
 

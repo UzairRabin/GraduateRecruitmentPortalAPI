@@ -19,8 +19,7 @@ import java.util.Objects;
 public class Department implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long departmentId;
+    private String departmentId;
 
     private String departmentName;
 

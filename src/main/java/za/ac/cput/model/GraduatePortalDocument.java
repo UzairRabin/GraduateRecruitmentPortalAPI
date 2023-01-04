@@ -17,8 +17,7 @@ import java.time.LocalDate;
 @Entity
 public class GraduatePortalDocument {
     @Id
-    @GeneratedValue
-    private long documentId;
+    private String documentId;
     private String documentName;
     private String documentType;
     private String documentLocation;

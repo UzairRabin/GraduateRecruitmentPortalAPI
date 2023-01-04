@@ -6,5 +6,5 @@ import za.ac.cput.model.Faculty;
 /**
  * @author Mbuso Kotobe
  * */
-public interface IFacultyRepository extends JpaRepository<Faculty, Long> {
+public interface IFacultyRepository extends JpaRepository<Faculty, String> {
 }

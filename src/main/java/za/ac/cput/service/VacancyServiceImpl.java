@@ -51,7 +51,7 @@ public class VacancyServiceImpl implements IVacancyService {
     }
 
     @Override
-    public Optional<Vacancy> read(Long integer)
+    public Optional<Vacancy> read(String integer)
     {
         return vacancyRepository.findById(integer);
     }
@@ -69,7 +69,7 @@ public class VacancyServiceImpl implements IVacancyService {
     }
 
     @Override
-    public void deleteById(Long vacancyId)
+    public void deleteById(String vacancyId)
     {
         vacancyRepository.deleteById(vacancyId);
     }

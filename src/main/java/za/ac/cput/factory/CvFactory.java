@@ -11,7 +11,7 @@ import za.ac.cput.utility.Utility;
 import java.time.LocalDate;
 
 public class CvFactory {
-    public static Cv build(int cvId, String documentName, String documentLocation, boolean isAcknowledged, LocalDate dateAdded) {
+    public static Cv build(String cvId, String documentName, String documentLocation, boolean isAcknowledged, LocalDate dateAdded) {
         Utility.checkStringParam("documentName", documentName);
         Utility.checkStringParam("documentLocation", documentLocation);
         Utility.checkStringParam("dateAdded", String.valueOf(dateAdded));

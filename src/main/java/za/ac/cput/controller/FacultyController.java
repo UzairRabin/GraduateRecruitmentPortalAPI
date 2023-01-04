@@ -43,7 +43,7 @@ public class FacultyController {
 
     @GetMapping("read/{facultyId}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Faculty> read(@PathVariable long facultyId)
+    public ResponseEntity<Faculty> read(@PathVariable String facultyId)
     {
         Faculty facultyReturned = service.read(facultyId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -59,7 +59,7 @@ public class FacultyController {
 
     @DeleteMapping("delete/{facultyId}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Void> deleteById(@PathVariable long facultyId)
+    public ResponseEntity<Void> deleteById(@PathVariable String facultyId)
     {
         service.deleteById(facultyId);
         return ResponseEntity.noContent().build();

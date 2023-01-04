@@ -11,16 +11,17 @@ import javax.persistence.ManyToOne;
  * */
 public class VacancyFactory {
 
-    public static Vacancy build(Long vacancyId, String vacancyTitle, String jobType,
+    public static Vacancy build(String vacancyId, String vacancyTitle, String jobType,
                                 String jobRole, boolean isApproved, String location,
                                 Recruiter recruiter)
     {
+        Utility.checkStringParam("vacancyId", vacancyId);
         Utility.checkStringParam("vacancyTitle", vacancyTitle);
         Utility.checkStringParam("jobType", jobType);
         Utility.checkStringParam("jobRole", jobRole);
         Utility.checkStringParam("location", location);
 
-        return Vacancy.builder().vacancyTitle(vacancyTitle).jobType(jobType)
+        return Vacancy.builder().vacancyId(vacancyId).vacancyTitle(vacancyTitle).jobType(jobType)
                                 .jobRole(jobRole).isApproved(isApproved)
                                 .location(location).recruiter(recruiter)
                                 .build();

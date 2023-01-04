@@ -11,6 +11,6 @@ import java.util.Optional;
  * */
 
 @Repository
-public interface IDepartmentRepository extends JpaRepository<Department, Integer> {
+public interface IDepartmentRepository extends JpaRepository<Department, String> {
 
 }

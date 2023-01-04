@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.factory.DepartmentFactory;
 import za.ac.cput.factory.FacultyFactory;
 import za.ac.cput.model.Department;
+import za.ac.cput.utility.Utility;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +27,8 @@ class DepartmentServiceImplTest {
     @Autowired
     protected DepartmentServiceImpl service;
 
-    Department departmentService = DepartmentFactory.build("IT Department",
-            FacultyFactory.build("Informatics & Design", "The Faculty of Informatics & Design is the creative hub of CPUT. The faculty focuses on design-thinking and encourages graduates to use design to contribute to society."));
+    Department departmentService = DepartmentFactory.build(Utility.generateId(),"IT Department",
+            FacultyFactory.build(Utility.generateId(), "Informatics & Design", "The Faculty of Informatics & Design is the creative hub of CPUT. The faculty focuses on design-thinking and encourages graduates to use design to contribute to society."));
 
     @Test
     void a_save() {
@@ -39,7 +40,7 @@ class DepartmentServiceImplTest {
 
     @Test
     void b_read() {
-        Optional<Department> temp = this.service.read(1);
+        Optional<Department> temp = this.service.read(Utility.generateId());
         log.info(temp.toString());
     }
 

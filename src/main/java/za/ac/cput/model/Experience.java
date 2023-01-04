@@ -15,8 +15,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Experience {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long experienceId;
+    private String experienceId;
     private String  jobTitle;
     private String assumedRole;
     private String startDate;

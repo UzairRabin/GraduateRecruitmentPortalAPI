@@ -45,7 +45,7 @@ public class DepartmentController {
 
     @GetMapping("read/{departmentId}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Department> read(@PathVariable int departmentId) {
+    public ResponseEntity<Department> read(@PathVariable String departmentId) {
         log.info("Read request:{}", departmentId);
         Department readDept= this.departmentService.read(departmentId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Department not found"));
@@ -61,7 +61,7 @@ public class DepartmentController {
 
     @DeleteMapping("delete/{departmentId}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Void> delete(@PathVariable int departmentId) {
+    public ResponseEntity<Void> delete(@PathVariable String departmentId) {
         log.info("delete request:{}",departmentId);
         this.departmentService.deleteById(departmentId);
         return ResponseEntity.noContent().build();

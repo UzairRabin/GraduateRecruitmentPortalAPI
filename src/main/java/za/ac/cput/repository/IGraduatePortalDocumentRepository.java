@@ -7,5 +7,5 @@ import za.ac.cput.model.GraduatePortalDocument;
 /**
  * @author Mbuso Kotobe
  * */
-public interface IGraduatePortalDocumentRepository extends JpaRepository<GraduatePortalDocument, Long> {
+public interface IGraduatePortalDocumentRepository extends JpaRepository<GraduatePortalDocument, String> {
 }
