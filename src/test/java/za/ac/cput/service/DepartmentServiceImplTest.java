@@ -32,14 +32,14 @@ class DepartmentServiceImplTest {
     @Test
     void a_save() {
         Department departmentService1 = this.service.save(departmentService);
-        Department departmentService = this.service.save(departmentService1);
+        Department departmentService = this.service.save(departmentService1);   // duplicate
         log.info(departmentService1.toString());
         log.info(departmentService.toString());
     }
 
     @Test
     void b_read() {
-        Optional<Department> temp = this.service.read(Integer.valueOf(1));
+        Optional<Department> temp = this.service.read(1);
         log.info(temp.toString());
     }
 
