@@ -1,5 +1,5 @@
 # Set the base image
-FROM openjdk:17-jdk-alpine
+FROM openjdk:8-jdk-alpine
 # This is the base image that will be used
 
 # Expose port 80

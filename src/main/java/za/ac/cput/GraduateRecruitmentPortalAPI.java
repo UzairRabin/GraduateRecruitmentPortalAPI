@@ -10,9 +10,8 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 import java.io.File;
-import java.io.IOException;
+
 
 @Slf4j
 @SpringBootApplication

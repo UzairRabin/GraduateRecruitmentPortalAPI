@@ -39,7 +39,7 @@ class DepartmentServiceImplTest {
 
     @Test
     void b_read() {
-        Optional<Department> temp = this.service.read(1);
+        Optional<Department> temp = this.service.read(Integer.valueOf(1));
         log.info(temp.toString());
     }
 
