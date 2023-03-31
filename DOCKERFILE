@@ -16,4 +16,5 @@ COPY ${JAR_FILE} GraduateRecruitmentPortalAPI-1.0-SNAPSHOT.jar
 # This is the name of the JAR file that will be run
 
 # Set the command to run the JAR file
-CMD [ "java", "-jar", "GraduateRecruitmentPortalAPI-1.0-SNAPSHOT.jar" ] # This is the command that will be run to start the JAR file
+CMD [ "java", "-jar", "GraduateRecruitmentPortalAPI-1.0-SNAPSHOT.jar" ]
+# This is the command that will be run to start the JAR file
