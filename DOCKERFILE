@@ -1,5 +1,14 @@
+# Set the base image
 FROM openjdk:17-jdk-alpine
+
+# Expose port 80
 EXPOSE 80
+
+# Set the JAR_FILE argument
 ARG JAR_FILE=target/GraduateRecruitmentPortalAPI-1.0-SNAPSHOT.jar
-COPY ${JAR_FILE} .
-CMD [ "java", "-jar",  "/GraduateRecruitmentPortalAPI-1.0-SNAPSHOT.jar"]
+
+# Copy the JAR file into the container
+COPY ${JAR_FILE} GraduateRecruitmentPortalAPI-1.0-SNAPSHOT.jar
+
+# Set the command to run the JAR file
+CMD [ "java", "-jar", "GraduateRecruitmentPortalAPI-1.0-SNAPSHOT.jar" ]
