@@ -10,7 +10,6 @@ import za.ac.cput.factory.DepartmentFactory;
 import za.ac.cput.factory.FacultyFactory;
 import za.ac.cput.model.Department;
 import java.util.List;
-import java.util.Optional;
 /**
  * @author Chadrack Mbuyi
  * */

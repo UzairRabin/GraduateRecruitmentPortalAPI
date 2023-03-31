@@ -8,6 +8,8 @@
     <artifactId>GraduateRecruitmentPortalAPI</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
+
     <name>GraduateRecruitmentPortalAPI</name>
 
     <parent>
@@ -122,5 +124,6 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
+
 
 </project>
