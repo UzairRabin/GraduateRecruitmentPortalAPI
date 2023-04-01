@@ -12,7 +12,8 @@ public class FacultyFactory {
         Utility.checkStringParam("facultyId", facultyId);
         Utility.checkStringParam("facultyName", facultyName);
         Utility.checkStringParam("facultyDescription", facultyDescription);
-        return Faculty.builder().facultyName(facultyName)
+        return Faculty.builder().facultyId(facultyId)
+                                .facultyName(facultyName)
                                 .facultyDescription(facultyDescription)
                                 .build();
     }

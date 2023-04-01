@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.factory.DepartmentFactory;
 import za.ac.cput.model.Department;
 import za.ac.cput.repository.IDepartmentRepository;
+import za.ac.cput.utility.Utility;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class DepartmentServiceImpl implements IDepartmentService{
     @Override
     public Department save(Department object) throws IllegalArgumentException
     {
-        Department department = DepartmentFactory.build(object.getDepartmentId(),
+        Department department = DepartmentFactory.build(Utility.generateId(),
                                                         object.getDepartmentName(),
                                                         object.getFaculty());
         return this.repository.save(department);

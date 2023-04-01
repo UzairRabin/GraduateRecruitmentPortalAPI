@@ -26,6 +26,7 @@ import java.util.Optional;
 public class GraduateServiceImpl implements IGraduateService, IUserAuthenticatorService<Graduate>{
 
     private final IGraduateRepository repository;
+    private Graduate validatedGraduate;
 
     @Autowired
     public GraduateServiceImpl(IGraduateRepository repository){
@@ -34,20 +35,38 @@ public class GraduateServiceImpl implements IGraduateService, IUserAuthenticator
 
     public Graduate save(Graduate graduate) throws IllegalArgumentException
     {
-       Graduate validatedGraduate = GraduateFactory.build(Utility.generateId(),
+        Optional<Graduate> persistedGraduate = findGraduateByEmail(graduate.getEmail());
+        persistedGraduate.ifPresentOrElse(graduate1 -> validatedGraduate =
+                GraduateFactory.build(graduate1.getUserId(),
                 graduate.getFirstName(),
                 graduate.getPreferredName(),
                 graduate.getSurname(),
                 graduate.getEmail(),
                 graduate.getSecondaryEmail(),
-                UserAuthenticatorServiceFacadeImpl.hashPassword(graduate.getPassword()),
+                graduate1.getPassword(),
                 graduate.getCellphone(),
-               "GRADUATE",
+                "GRADUATE",
                 graduate.getMotorVehicleLicense(),
                 graduate.getCountry(),
                 graduate.getCv(),
                 graduate.getQualifications(),
-                graduate.getExperiences());
+                graduate.getExperiences()),
+
+                () -> validatedGraduate = GraduateFactory.build(
+                        Utility.generateId(),
+                        graduate.getFirstName(),
+                        graduate.getPreferredName(),
+                        graduate.getSurname(),
+                        graduate.getEmail(),
+                        graduate.getSecondaryEmail(),
+                        UserAuthenticatorServiceFacadeImpl.hashPassword(graduate.getPassword()),
+                        graduate.getCellphone(),
+                        "GRADUATE",
+                        graduate.getMotorVehicleLicense(),
+                        graduate.getCountry(),
+                        graduate.getCv(),
+                        graduate.getQualifications(),
+                        graduate.getExperiences()));
 
         return this.repository.save(validatedGraduate);
     }
@@ -55,7 +74,7 @@ public class GraduateServiceImpl implements IGraduateService, IUserAuthenticator
     public Graduate signup(Graduate graduate) throws IllegalArgumentException, UserExistsException
     {
         Graduate validatedGraduate = GraduateFactory.build(
-                graduate.getUserId(),
+                Utility.generateId(),
                 graduate.getEmail(),
                 UserAuthenticatorServiceFacadeImpl.hashPassword(graduate.getPassword()),
                 "GRADUATE");

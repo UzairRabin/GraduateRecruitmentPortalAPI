@@ -8,6 +8,7 @@ import za.ac.cput.model.Recruiter;
 import za.ac.cput.model.Faculty;
 import za.ac.cput.repository.IRecruiterRepository;
 import za.ac.cput.repository.IFacultyRepository;
+import za.ac.cput.utility.Utility;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,11 +32,11 @@ public class FacultyServiceImpl implements IFacultyService{
     @Override
     public Faculty save(Faculty object) throws IllegalArgumentException
     {
-        safeFaculty = FacultyFactory.build(object.getFacultyId(),
+        safeFaculty = FacultyFactory.build(Utility.generateId(),
                                            object.getFacultyName(),
                                            object.getFacultyDescription());
 
-        return this.facultyRepository.save(object);
+        return this.facultyRepository.save(safeFaculty);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class RecruiterServiceImpl implements IRecruiterService, IUserAuthenticat
     @Override
     public Recruiter save(Recruiter object) throws IllegalArgumentException
     {
-        safeRecruiter = RecruiterFactory.build(object.getUserId(),
+        safeRecruiter = RecruiterFactory.build(Utility.generateId(),
                                                object.getFirstName(),
                                                object.getSurname(),
                                                object.getCompanyName(),

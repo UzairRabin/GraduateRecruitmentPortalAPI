@@ -1,5 +1,7 @@
 package za.ac.cput.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -22,6 +24,6 @@ public class Faculty {
 
     private String facultyDescription;
 
-    @OneToMany(mappedBy = "faculty")
+    @OneToMany/*(mappedBy = "faculty")*/
     private Set<Department> departments;
 }
