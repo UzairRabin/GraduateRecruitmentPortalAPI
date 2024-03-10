@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import za.ac.cput.GraduateRecruitmentPortalAPI;
 import za.ac.cput.model.Cv;
 import za.ac.cput.repository.ICvRepository;
+import za.ac.cput.utility.Utility;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,11 +42,13 @@ public class CvServiceImpl implements ICvService {
                     .getUserDocumentsDirectory(username)
                     .concat("cv").concat("//");
 
-            cvInstance = Cv.builder().documentLocation(userCvDirectory)
+            cvInstance = Cv.builder().cvId(Utility.generateId())
+                    .documentLocation(userCvDirectory)
                                      .documentName(cv.getOriginalFilename())
                                      .isAcknowledged(false)
                                      .dateAdded(LocalDate.now()).build();
             cv.transferTo(new File(userCvDirectory));
+            save(cvInstance);
         }catch (IOException | IllegalStateException exception)
         {
             log.error("Save request:{}", cv);
@@ -56,7 +59,8 @@ public class CvServiceImpl implements ICvService {
     @Override
     public Cv save(Cv object)
     {
-        throw new NotImplementedException("Use the overload of save(MultipartFile cv, String username)");
+        return this.repository.save(object);
+        //throw new NotImplementedException("Use the overload of save(MultipartFile cv, String username)");
     }
 
     @Override
