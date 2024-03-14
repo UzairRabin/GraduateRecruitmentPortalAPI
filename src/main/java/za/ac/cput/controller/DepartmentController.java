@@ -28,6 +28,7 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
+    //working end point
     @PostMapping("save")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Department> save(@Valid @RequestBody Department department)

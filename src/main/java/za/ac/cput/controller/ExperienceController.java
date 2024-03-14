@@ -23,6 +23,7 @@ public class ExperienceController {
         this.experienceService = experienceService;
     }
 
+    // how to pass graduate to endpoint
     @PostMapping("save")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Experience> save(@Valid @RequestBody Experience experience) {

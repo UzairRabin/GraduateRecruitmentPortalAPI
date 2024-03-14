@@ -68,7 +68,8 @@ public class CvServiceImpl implements ICvService {
         try{
             Cv cvLocalInstance = this.repository.findById(s).get();
             byte[] cvBinData = Files.readAllBytes(new File(cvInstance.getDocumentLocation()).toPath());
-            cvInstance = Cv.builder().documentName(cvLocalInstance.getDocumentName())
+            cvInstance = Cv.builder().cvId(s)
+                                    .documentName(cvLocalInstance.getDocumentName())
                                      .documentLocation(cvLocalInstance.getDocumentLocation())
                                      .isAcknowledged(cvLocalInstance.isAcknowledged())
                                      .cvData(cvBinData)

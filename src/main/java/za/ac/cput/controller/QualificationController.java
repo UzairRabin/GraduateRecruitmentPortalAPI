@@ -23,6 +23,7 @@ public class QualificationController {
         this.qualificationService = qualificationService;
     }
 
+    // how to pass the graduate to the end point
     @PostMapping("save")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Qualification> save(@RequestBody Qualification qualification){

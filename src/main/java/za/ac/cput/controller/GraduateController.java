@@ -38,6 +38,7 @@ public class GraduateController {
         this.graduateServiceImpl = graduateServiceImpl;
     }
 
+    //Working Endpoint
     @PostMapping("save")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Graduate> save(@RequestBody Graduate graduate)
@@ -54,6 +55,7 @@ public class GraduateController {
         return ResponseEntity.ok(save);
     }
 
+    //working Endpoint
     @GetMapping("read/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Graduate> read(@PathVariable String id)
@@ -64,6 +66,7 @@ public class GraduateController {
         return ResponseEntity.ok(graduate);
     }
 
+    //working endpoint
     @DeleteMapping("delete/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Graduate> delete(@PathVariable String id)

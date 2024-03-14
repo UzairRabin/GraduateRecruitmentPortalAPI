@@ -26,6 +26,7 @@ public class FacultyController {
         this.service = service;
     }
 
+    //working endpoint
     @PostMapping("save")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Faculty> save(@RequestBody Faculty faculty)
